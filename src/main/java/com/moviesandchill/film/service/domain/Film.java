@@ -47,7 +47,7 @@ public class Film {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_age_limit")
-    private Age_limit age_limit;
+    private AgeLimit age_limit;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_country")
@@ -65,7 +65,7 @@ public class Film {
     private Set<Staff> staffs = new HashSet();
 
     @OneToMany(mappedBy = "film")
-    private List<View_history> view_histories = new ArrayList<View_history>();
+    private List<ViewHistory> view_histories = new ArrayList<ViewHistory>();
 
     @OneToMany(mappedBy = "film")
     private List<Review> reviews = new ArrayList<Review>();
@@ -142,11 +142,11 @@ public class Film {
         this.description = description;
     }
 
-    public Age_limit getAge_limit() {
+    public AgeLimit getAge_limit() {
         return age_limit;
     }
 
-    public void setAge_limit(Age_limit age_limit) {
+    public void setAge_limit(AgeLimit age_limit) {
         this.age_limit = age_limit;
     }
 
@@ -174,11 +174,11 @@ public class Film {
         this.staffs = staffs;
     }
 
-    public List<View_history> getView_histories() {
+    public List<ViewHistory> getView_histories() {
         return view_histories;
     }
 
-    public void setView_histories(List<View_history> view_histories) {
+    public void setView_histories(List<ViewHistory> view_histories) {
         this.view_histories = view_histories;
     }
 

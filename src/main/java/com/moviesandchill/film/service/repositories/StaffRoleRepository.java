@@ -1,7 +1,7 @@
 package com.moviesandchill.film.service.repositories;
 
-import com.moviesandchill.film.service.domain.Staff_role;
+import com.moviesandchill.film.service.domain.StaffRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface StaffRoleRepository extends JpaRepository<Staff_role, Long> {
+public interface StaffRoleRepository extends JpaRepository<StaffRole, Long> {
 }

@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "age_limit")
 @Data
-public class Age_limit {
+public class AgeLimit {
 
     @Id
     @Column(name = "id_age_limit")

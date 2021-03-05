@@ -1,8 +1,6 @@
 package com.moviesandchill.film.service.mapper;
 
-import com.moviesandchill.film.service.domain.Film;
 import com.moviesandchill.film.service.domain.Staff;
-import com.moviesandchill.film.service.dto.FilmDto;
 import com.moviesandchill.film.service.dto.StaffDto;
 import org.mapstruct.Mapper;
 

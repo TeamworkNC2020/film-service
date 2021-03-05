@@ -4,11 +4,13 @@ import com.moviesandchill.film.service.domain.Country;
 import com.moviesandchill.film.service.domain.Film;
 import com.moviesandchill.film.service.dto.CountryDto;
 import com.moviesandchill.film.service.dto.FilmDto;
+import com.moviesandchill.film.service.mapper.AgeLimitMapper;
 import com.moviesandchill.film.service.mapper.CountryMapper;
 import com.moviesandchill.film.service.mapper.FilmMapper;
 import com.moviesandchill.film.service.repositories.CountryRepository;
 import com.moviesandchill.film.service.repositories.FilmRepository;
 import com.moviesandchill.film.service.service.CountryService;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,13 +24,8 @@ public class CountryServiceImp implements CountryService {
     @Autowired
     CountryRepository countryRepository;
     FilmRepository filmRepository;
-    private final CountryMapper countryMapper;
-    private final FilmMapper filmMapper;
-
-    public CountryServiceImp(CountryMapper countryMapper, FilmMapper filmMapper) {
-        this.countryMapper = countryMapper;
-        this.filmMapper = filmMapper;
-    }
+    private final CountryMapper countryMapper = Mappers.getMapper(CountryMapper.class);
+    private final FilmMapper filmMapper = Mappers.getMapper(FilmMapper.class);
 
     @Override
     public List<CountryDto> getAllCountry() {
