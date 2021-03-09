@@ -31,6 +31,7 @@ public class AgeLimitServiceImp implements AgeLimitService {
     @Override
     public List<AgeLimitDto> getAllAgeLimit() {
         List<AgeLimit> age_limits = ageRepository.findAll();
+        System.out.println(age_limits);
         return ageMapper.listAgeLimitToListDto(age_limits);
     }
 

@@ -1,6 +1,7 @@
 package com.moviesandchill.film.service.domain;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "age_limit")
 @Data
+@NoArgsConstructor
 public class AgeLimit {
 
     @Id

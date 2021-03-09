@@ -2,7 +2,6 @@ package com.moviesandchill.film.service.service.imp;
 
 import com.moviesandchill.film.service.domain.ViewHistory;
 import com.moviesandchill.film.service.dto.ViewHistoryDto;
-import com.moviesandchill.film.service.mapper.FilmMapper;
 import com.moviesandchill.film.service.mapper.ViewHistoryMapper;
 import com.moviesandchill.film.service.repositories.ViewHistoryRepository;
 import com.moviesandchill.film.service.service.ViewHistoryService;

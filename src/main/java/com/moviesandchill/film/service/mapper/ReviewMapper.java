@@ -3,10 +3,15 @@ package com.moviesandchill.film.service.mapper;
 import com.moviesandchill.film.service.domain.Review;
 import com.moviesandchill.film.service.dto.ReviewDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.NullValueCheckStrategy;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring",
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS
+)
 public interface ReviewMapper {
 
     Review dtoToReview(ReviewDto review_dto);

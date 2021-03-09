@@ -3,11 +3,16 @@ package com.moviesandchill.film.service.mapper;
 import com.moviesandchill.film.service.domain.Genre;
 import com.moviesandchill.film.service.dto.GenreDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.NullValueCheckStrategy;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import java.util.List;
 import java.util.Set;
 
-@Mapper
+@Mapper(componentModel = "spring",
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS
+)
 public interface GenreMapper {
 
     Genre dtoToGenre(GenreDto genre_dto);
