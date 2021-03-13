@@ -47,18 +47,8 @@ public class StaffController {
         staffService.deleteStaffById(staffId);
     }
 
-    @GetMapping("/{staffId}/staffRoles")
-    public Set<StaffRoleDto> getAllStaffRoleWithStaff(@PathVariable Long staffId) {
-        return staffService.getAllStaffRoleWithStaff(staffId);
-    }
-
-    @PostMapping("/{staffId}/addStaffRole/{staffRoleId}")
-    public void addStaffRoleToStaff(@PathVariable Long staffId,@PathVariable Long staffRoleId) throws Exception {
-        staffService.addStaffRoleToStaff(staffId,staffRoleId);
-    }
-
     @GetMapping("/{staffId}/films")
-    public Set<FilmDto> getAllFilmWithStaff(@PathVariable Long staffId) {
+    public List<FilmDto> getAllFilmWithStaff(@PathVariable Long staffId) {
         return staffService.getAllFilmWithStaff(staffId);
     }
 

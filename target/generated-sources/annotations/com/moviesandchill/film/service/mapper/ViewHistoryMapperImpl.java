@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-03-09T17:41:54+0300",
+    date = "2021-03-13T10:50:31+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_202 (Oracle Corporation)"
 )
 @Component
@@ -23,6 +23,16 @@ public class ViewHistoryMapperImpl implements ViewHistoryMapper {
 
         ViewHistory viewHistory = new ViewHistory();
 
+        if ( view_history_dto.getId_view_history() != null ) {
+            viewHistory.setId_view_history( view_history_dto.getId_view_history() );
+        }
+        if ( view_history_dto.getTime_movie_watching() != null ) {
+            viewHistory.setTime_movie_watching( view_history_dto.getTime_movie_watching() );
+        }
+        if ( view_history_dto.getId_user() != null ) {
+            viewHistory.setId_user( view_history_dto.getId_user() );
+        }
+
         return viewHistory;
     }
 
@@ -33,6 +43,16 @@ public class ViewHistoryMapperImpl implements ViewHistoryMapper {
         }
 
         ViewHistoryDto viewHistoryDto = new ViewHistoryDto();
+
+        if ( view_history.getId_view_history() != null ) {
+            viewHistoryDto.setId_view_history( view_history.getId_view_history() );
+        }
+        if ( view_history.getTime_movie_watching() != null ) {
+            viewHistoryDto.setTime_movie_watching( view_history.getTime_movie_watching() );
+        }
+        if ( view_history.getId_user() != null ) {
+            viewHistoryDto.setId_user( view_history.getId_user() );
+        }
 
         return viewHistoryDto;
     }

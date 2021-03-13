@@ -19,11 +19,7 @@ public interface StaffService {
 
     void deleteStaffById(Long staffId);
 
-    Set<StaffRoleDto> getAllStaffRoleWithStaff(Long staffId);
-
-    void addStaffRoleToStaff(Long StaffId,Long staffRoleId) throws Exception;
-
-    Set<FilmDto> getAllFilmWithStaff(Long staffId);
+    List<FilmDto> getAllFilmWithStaff(Long staffId);
 
     void addFilmToStaff(Long staffId,Long filmId) throws Exception;
 }

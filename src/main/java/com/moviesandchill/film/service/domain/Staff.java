@@ -4,7 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -37,13 +39,12 @@ public class Staff {
     @JoinColumn(name = "fk_gender")
     private Gender gender;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "Staff_has_staff_role", joinColumns = @JoinColumn(name = "staff_id", referencedColumnName = "id_staff"),
-            inverseJoinColumns = @JoinColumn(name = "staff_role_id", referencedColumnName = "id_staff_role"))
-    private Set<StaffRole> staff_roles = new HashSet();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_staff_role")
+    private StaffRole staff_role;
 
     @ManyToMany(mappedBy = "staffs")
-    private Set<Film> films = new HashSet();
+    private List<Film> films = new ArrayList<>();
 
     public Long getId_staff() {
         return id_staff;
@@ -101,19 +102,4 @@ public class Staff {
         this.gender = gender;
     }
 
-    public Set<StaffRole> getStaff_roles() {
-        return staff_roles;
-    }
-
-    public void setStaff_roles(Set<StaffRole> staff_roles) {
-        this.staff_roles = staff_roles;
-    }
-
-    public Set<Film> getFilms() {
-        return films;
-    }
-
-    public void setFilms(Set<Film> films) {
-        this.films = films;
-    }
 }

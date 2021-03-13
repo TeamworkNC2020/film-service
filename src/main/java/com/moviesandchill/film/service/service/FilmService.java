@@ -17,11 +17,11 @@ public interface FilmService {
 
     void deleteFilmById(Long film_id);
 
-    Set<GenreDto> getAllGenreWithFilm(Long film_id);
+    List<GenreDto> getAllGenreWithFilm(Long film_id);
 
     void addGenreToFilm(Long film_id,Long genre_id) throws Exception;
 
-    Set<StaffDto> getAllStaffWithFilm(Long film_id);
+    List<StaffDto> getAllStaffWithFilm(Long film_id);
 
     void addStaffToFilm(Long film_id,Long staff_id) throws Exception;
 

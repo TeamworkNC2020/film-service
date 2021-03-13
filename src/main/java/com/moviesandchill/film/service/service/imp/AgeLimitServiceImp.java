@@ -23,15 +23,17 @@ public class AgeLimitServiceImp implements AgeLimitService {
 
     @Autowired
     AgeLimitRepository ageRepository;
+    @Autowired
     FilmRepository filmRepository;
-    private final AgeLimitMapper ageMapper = Mappers.getMapper(AgeLimitMapper.class);
-    private final FilmMapper filmMapper = Mappers.getMapper(FilmMapper.class);
+    @Autowired
+    AgeLimitMapper ageMapper;
+    @Autowired
+    FilmMapper filmMapper ;
 
 
     @Override
     public List<AgeLimitDto> getAllAgeLimit() {
         List<AgeLimit> age_limits = ageRepository.findAll();
-        System.out.println(age_limits);
         return ageMapper.listAgeLimitToListDto(age_limits);
     }
 

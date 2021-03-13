@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-03-09T17:41:53+0300",
+    date = "2021-03-13T10:50:31+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_202 (Oracle Corporation)"
 )
 @Component
@@ -23,6 +23,13 @@ public class CountryMapperImpl implements CountryMapper {
 
         Country country = new Country();
 
+        if ( country_dto.getId_country() != null ) {
+            country.setId_country( country_dto.getId_country() );
+        }
+        if ( country_dto.getCountry_name() != null ) {
+            country.setCountry_name( country_dto.getCountry_name() );
+        }
+
         return country;
     }
 
@@ -33,6 +40,13 @@ public class CountryMapperImpl implements CountryMapper {
         }
 
         CountryDto countryDto = new CountryDto();
+
+        if ( country.getId_country() != null ) {
+            countryDto.setId_country( country.getId_country() );
+        }
+        if ( country.getCountry_name() != null ) {
+            countryDto.setCountry_name( country.getCountry_name() );
+        }
 
         return countryDto;
     }

@@ -18,7 +18,7 @@ public interface GenreService {
 
     void deleteGenreById(Long genreId);
 
-    Set<FilmDto> getAllFilmWithGenre(Long genreId);
+    List<FilmDto> getAllFilmWithGenre(Long genreId);
 
     void addFilmToGenre(Long filmId,Long genreId) throws Exception;
 }

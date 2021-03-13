@@ -3,7 +3,9 @@ package com.moviesandchill.film.service.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,8 +21,8 @@ public class StaffRole {
     @Column(name = "role_title")
     private String role_title;
 
-    @ManyToMany(mappedBy = "staff_roles")
-    private Set<Staff> staffs = new HashSet();
+    @OneToMany(mappedBy = "staff_role")
+    private List<Staff> staffs = new ArrayList<>();
 
     public Long getId_staff_role() {
         return id_staff_role;
@@ -38,11 +40,4 @@ public class StaffRole {
         this.role_title = role_title;
     }
 
-    public Set<Staff> getStaffs() {
-        return staffs;
-    }
-
-    public void setStaffs(Set<Staff> staffs) {
-        this.staffs = staffs;
-    }
 }

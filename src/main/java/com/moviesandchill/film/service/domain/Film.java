@@ -4,12 +4,10 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigInteger;
-import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "film")
@@ -25,7 +23,7 @@ public class Film {
     private String film_title;
 
     @Column(name = "duration")
-    private Duration duration;
+    private LocalDateTime duration;
 
     @Column(name = "release_date")
     private LocalDate release_date;
@@ -56,13 +54,13 @@ public class Film {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "film_has_genre", joinColumns = @JoinColumn(name = "film_id", referencedColumnName = "id_film"),
             inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id_genre"))
-    private Set<Genre> genres = new HashSet();
+    private List<Genre> genres = new ArrayList<>();
 
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "film_has_staff", joinColumns = @JoinColumn(name = "film_id", referencedColumnName = "id_film"),
             inverseJoinColumns = @JoinColumn(name = "staff_id", referencedColumnName = "id_staff"))
-    private Set<Staff> staffs = new HashSet();
+    private List<Staff> staffs = new ArrayList<>();
 
     @OneToMany(mappedBy = "film")
     private List<ViewHistory> view_histories = new ArrayList<ViewHistory>();
@@ -86,11 +84,11 @@ public class Film {
         this.film_title = film_title;
     }
 
-    public Duration getDuration() {
+    public LocalDateTime getDuration() {
         return duration;
     }
 
-    public void setDuration(Duration duration) {
+    public void setDuration(LocalDateTime duration) {
         this.duration = duration;
     }
 
@@ -158,22 +156,6 @@ public class Film {
         this.country = country;
     }
 
-    public Set<Genre> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(Set<Genre> genres) {
-        this.genres = genres;
-    }
-
-    public Set<Staff> getStaffs() {
-        return staffs;
-    }
-
-    public void setStaffs(Set<Staff> staffs) {
-        this.staffs = staffs;
-    }
-
     public List<ViewHistory> getView_histories() {
         return view_histories;
     }
@@ -189,4 +171,6 @@ public class Film {
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
+
+
 }

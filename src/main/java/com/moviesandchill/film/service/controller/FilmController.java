@@ -46,7 +46,7 @@ public class FilmController {
     }
 
     @GetMapping("/{filmId}/genres")
-    public Set<GenreDto> getAllGenreWithFilm(@PathVariable Long filmId) {
+    public List<GenreDto> getAllGenreWithFilm(@PathVariable Long filmId) {
         return filmService.getAllGenreWithFilm(filmId);
     }
 
@@ -56,7 +56,7 @@ public class FilmController {
     }
 
     @GetMapping("/{filmId}/staffs")
-    public Set<StaffDto> getAllStaffWithFilm(@PathVariable Long filmId) {
+    public List<StaffDto> getAllStaffWithFilm(@PathVariable Long filmId) {
         return filmService.getAllStaffWithFilm(filmId);
     }
 

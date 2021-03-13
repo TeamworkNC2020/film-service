@@ -19,10 +19,7 @@ public class AgeLimitController {
 
     @GetMapping
     public List<AgeLimitDto> getAllAgeLimit() {
-        List<AgeLimitDto> tem = ageLimitService.getAllAgeLimit();
-        System.out.println(tem);
-        tem.stream().map(Object::toString).forEach(System.out::println);
-        return tem;
+        return ageLimitService.getAllAgeLimit();
     }
 
     @DeleteMapping

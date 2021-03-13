@@ -18,7 +18,8 @@ public class UserHasReviewServiceImp implements UserHasReviewService {
 
     @Autowired
     UserHasReviewRepository userHasReviewRepository;
-    private final UserHasReviewMapper userHasReviewMapper = Mappers.getMapper(UserHasReviewMapper.class);
+    @Autowired
+    UserHasReviewMapper userHasReviewMapper;
 
     @Override
     public List<UserHasReviewDto> getAllUserHasReview() {

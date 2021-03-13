@@ -23,9 +23,12 @@ public class CountryServiceImp implements CountryService {
 
     @Autowired
     CountryRepository countryRepository;
+    @Autowired
     FilmRepository filmRepository;
-    private final CountryMapper countryMapper = Mappers.getMapper(CountryMapper.class);
-    private final FilmMapper filmMapper = Mappers.getMapper(FilmMapper.class);
+    @Autowired
+    CountryMapper countryMapper;
+    @Autowired
+    FilmMapper filmMapper;
 
     @Override
     public List<CountryDto> getAllCountry() {

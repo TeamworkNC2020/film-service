@@ -47,7 +47,7 @@ public class StaffRoleController {
     }
 
     @GetMapping("/{staffRoleId}/staffs")
-    public Set<StaffDto> getAllStaffWithStaffRole(@PathVariable Long staffRoleId) {
+    public List<StaffDto> getAllStaffWithStaffRole(@PathVariable Long staffRoleId) {
         return staffRoleService.getAllStaffWithStaffRole(staffRoleId);
     }
 

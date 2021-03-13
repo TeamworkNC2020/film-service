@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-03-09T17:41:53+0300",
+    date = "2021-03-13T10:50:31+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_202 (Oracle Corporation)"
 )
 @Component
@@ -23,6 +23,13 @@ public class AgeLimitMapperImpl implements AgeLimitMapper {
 
         AgeLimit ageLimit = new AgeLimit();
 
+        if ( age_limit_dto.getId_age_limit() != null ) {
+            ageLimit.setId_age_limit( age_limit_dto.getId_age_limit() );
+        }
+        if ( age_limit_dto.getTitle() != null ) {
+            ageLimit.setTitle( age_limit_dto.getTitle() );
+        }
+
         return ageLimit;
     }
 
@@ -33,6 +40,13 @@ public class AgeLimitMapperImpl implements AgeLimitMapper {
         }
 
         AgeLimitDto ageLimitDto = new AgeLimitDto();
+
+        if ( age_limit.getId_age_limit() != null ) {
+            ageLimitDto.setId_age_limit( age_limit.getId_age_limit() );
+        }
+        if ( age_limit.getTitle() != null ) {
+            ageLimitDto.setTitle( age_limit.getTitle() );
+        }
 
         return ageLimitDto;
     }

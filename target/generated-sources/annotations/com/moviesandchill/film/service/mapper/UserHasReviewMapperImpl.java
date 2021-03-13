@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-03-09T17:41:53+0300",
+    date = "2021-03-13T10:50:31+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_202 (Oracle Corporation)"
 )
 @Component
@@ -23,6 +23,16 @@ public class UserHasReviewMapperImpl implements UserHasReviewMapper {
 
         UserHasReview userHasReview = new UserHasReview();
 
+        if ( userHasReviewDto.getId_user_has_review() != null ) {
+            userHasReview.setId_user_has_review( userHasReviewDto.getId_user_has_review() );
+        }
+        if ( userHasReviewDto.getId_user() != null ) {
+            userHasReview.setId_user( userHasReviewDto.getId_user() );
+        }
+        if ( userHasReviewDto.getUser_score() != null ) {
+            userHasReview.setUser_score( userHasReviewDto.getUser_score() );
+        }
+
         return userHasReview;
     }
 
@@ -33,6 +43,16 @@ public class UserHasReviewMapperImpl implements UserHasReviewMapper {
         }
 
         UserHasReviewDto userHasReviewDto = new UserHasReviewDto();
+
+        if ( userHasReview.getId_user_has_review() != null ) {
+            userHasReviewDto.setId_user_has_review( userHasReview.getId_user_has_review() );
+        }
+        if ( userHasReview.getId_user() != null ) {
+            userHasReviewDto.setId_user( userHasReview.getId_user() );
+        }
+        if ( userHasReview.getUser_score() != null ) {
+            userHasReviewDto.setUser_score( userHasReview.getUser_score() );
+        }
 
         return userHasReviewDto;
     }

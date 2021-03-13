@@ -18,7 +18,7 @@ public interface StaffRoleService {
 
     void deleteStaffRoleById(Long staffRoleId);
 
-    Set<StaffDto> getAllStaffWithStaffRole(Long staffRoleId);
+    List<StaffDto> getAllStaffWithStaffRole(Long staffRoleId);
 
     void addStaffToStaffRole(Long staffId,Long staffRoleId) throws Exception;
 }

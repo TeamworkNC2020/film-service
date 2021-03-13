@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.math.BigInteger;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -19,7 +20,7 @@ public class FilmDto {
 
     private String film_title;
 
-    private Duration duration;
+    private LocalDateTime duration;
 
     private LocalDate release_date;
 

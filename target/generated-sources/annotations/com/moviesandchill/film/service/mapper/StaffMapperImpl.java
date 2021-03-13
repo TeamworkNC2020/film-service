@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-03-09T17:41:53+0300",
+    date = "2021-03-13T10:50:30+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_202 (Oracle Corporation)"
 )
 @Component
@@ -25,6 +25,22 @@ public class StaffMapperImpl implements StaffMapper {
 
         Staff staff = new Staff();
 
+        if ( staff_dto.getId_staff() != null ) {
+            staff.setId_staff( staff_dto.getId_staff() );
+        }
+        if ( staff_dto.getStaff_first_name() != null ) {
+            staff.setStaff_first_name( staff_dto.getStaff_first_name() );
+        }
+        if ( staff_dto.getStaff_last_name() != null ) {
+            staff.setStaff_last_name( staff_dto.getStaff_last_name() );
+        }
+        if ( staff_dto.getBirthday_date() != null ) {
+            staff.setBirthday_date( staff_dto.getBirthday_date() );
+        }
+        if ( staff_dto.getDescription() != null ) {
+            staff.setDescription( staff_dto.getDescription() );
+        }
+
         return staff;
     }
 
@@ -35,6 +51,22 @@ public class StaffMapperImpl implements StaffMapper {
         }
 
         StaffDto staffDto = new StaffDto();
+
+        if ( staff.getId_staff() != null ) {
+            staffDto.setId_staff( staff.getId_staff() );
+        }
+        if ( staff.getStaff_first_name() != null ) {
+            staffDto.setStaff_first_name( staff.getStaff_first_name() );
+        }
+        if ( staff.getStaff_last_name() != null ) {
+            staffDto.setStaff_last_name( staff.getStaff_last_name() );
+        }
+        if ( staff.getBirthday_date() != null ) {
+            staffDto.setBirthday_date( staff.getBirthday_date() );
+        }
+        if ( staff.getDescription() != null ) {
+            staffDto.setDescription( staff.getDescription() );
+        }
 
         return staffDto;
     }

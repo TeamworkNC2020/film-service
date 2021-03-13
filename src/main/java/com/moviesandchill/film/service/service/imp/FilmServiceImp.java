@@ -16,15 +16,24 @@ public class FilmServiceImp implements FilmService {
 
     @Autowired
     FilmRepository filmRepository;
+    @Autowired
     StaffRepository staffRepository;
+    @Autowired
     GenreRepository genreRepository;
+    @Autowired
     ViewHistoryRepository viewHistoryRepository;
+    @Autowired
     ReviewRepository reviewRepository;
-    private final FilmMapper filmMapper = Mappers.getMapper(FilmMapper.class);
-    private final StaffMapper staffMapper = Mappers.getMapper(StaffMapper.class);
-    private final GenreMapper genreMapper = Mappers.getMapper(GenreMapper.class);
-    private final ViewHistoryMapper viewHistoryMapper = Mappers.getMapper(ViewHistoryMapper.class);
-    private final ReviewMapper reviewMapper = Mappers.getMapper(ReviewMapper.class);
+    @Autowired
+    FilmMapper filmMapper;
+    @Autowired
+    StaffMapper staffMapper;
+    @Autowired
+    GenreMapper genreMapper;
+    @Autowired
+    ViewHistoryMapper viewHistoryMapper;
+    @Autowired
+    ReviewMapper reviewMapper;
 
     @Override
     public List<FilmDto> getAllFilm() {
@@ -56,11 +65,11 @@ public class FilmServiceImp implements FilmService {
     }
 
     @Override
-    public Set<GenreDto> getAllGenreWithFilm(Long film_id) {
+    public List<GenreDto> getAllGenreWithFilm(Long film_id) {
         Optional<Film> film = filmRepository.findById(film_id);
         if (film.isPresent()) {
-            Set<Genre> genres = new HashSet<>(film.get().getGenres());
-            return genreMapper.setGenreToSetDto(genres);
+            List<Genre> genres = new ArrayList<>(film.get().getGenres());
+            return genreMapper.listGenreToListDto(genres);
         }
         return null;
     }
@@ -76,11 +85,11 @@ public class FilmServiceImp implements FilmService {
     }
 
     @Override
-    public Set<StaffDto> getAllStaffWithFilm(Long film_id) {
+    public List<StaffDto> getAllStaffWithFilm(Long film_id) {
         Optional<Film> film = filmRepository.findById(film_id);
         if (film.isPresent()) {
-            Set<Staff> staffs = new HashSet<>(film.get().getStaffs());
-            return staffMapper.setStaffToSetDto(staffs);
+            List<Staff> staffs = new ArrayList<>(film.get().getStaffs());
+            return staffMapper.listStaffToListDto(staffs);
         }
         return null;
     }

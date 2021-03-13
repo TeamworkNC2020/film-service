@@ -18,9 +18,12 @@ public class ReviewServiceImp implements ReviewService {
 
     @Autowired
     UserHasReviewRepository userHasReviewRepository;
+    @Autowired
     ReviewRepository reviewRepository;
-    private final UserHasReviewMapper userHasReviewMapper = Mappers.getMapper(UserHasReviewMapper.class);
-    private final ReviewMapper reviewMapper = Mappers.getMapper(ReviewMapper.class);
+    @Autowired
+    UserHasReviewMapper userHasReviewMapper;
+    @Autowired
+    ReviewMapper reviewMapper;
 
     @Override
     public List<ReviewDto> getAllReview() {

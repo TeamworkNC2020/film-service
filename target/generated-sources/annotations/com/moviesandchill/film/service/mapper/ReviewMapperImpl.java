@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-03-09T17:41:54+0300",
+    date = "2021-03-13T10:50:31+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_202 (Oracle Corporation)"
 )
 @Component
@@ -23,6 +23,22 @@ public class ReviewMapperImpl implements ReviewMapper {
 
         Review review = new Review();
 
+        if ( review_dto.getId_review() != null ) {
+            review.setId_review( review_dto.getId_review() );
+        }
+        if ( review_dto.getRating_film() != null ) {
+            review.setRating_film( review_dto.getRating_film() );
+        }
+        if ( review_dto.getReview() != null ) {
+            review.setReview( review_dto.getReview() );
+        }
+        if ( review_dto.getReview_date() != null ) {
+            review.setReview_date( review_dto.getReview_date() );
+        }
+        if ( review_dto.getId_user() != null ) {
+            review.setId_user( review_dto.getId_user() );
+        }
+
         return review;
     }
 
@@ -33,6 +49,22 @@ public class ReviewMapperImpl implements ReviewMapper {
         }
 
         ReviewDto reviewDto = new ReviewDto();
+
+        if ( review.getId_review() != null ) {
+            reviewDto.setId_review( review.getId_review() );
+        }
+        if ( review.getRating_film() != null ) {
+            reviewDto.setRating_film( review.getRating_film() );
+        }
+        if ( review.getReview() != null ) {
+            reviewDto.setReview( review.getReview() );
+        }
+        if ( review.getReview_date() != null ) {
+            reviewDto.setReview_date( review.getReview_date() );
+        }
+        if ( review.getId_user() != null ) {
+            reviewDto.setId_user( review.getId_user() );
+        }
 
         return reviewDto;
     }

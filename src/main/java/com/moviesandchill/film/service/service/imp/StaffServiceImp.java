@@ -13,21 +13,23 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class StaffServiceImp implements StaffService {
 
     @Autowired
     FilmRepository filmRepository;
+    @Autowired
     StaffRepository staffRepository;
+    @Autowired
     StaffRoleRepository staffRoleRepository;
-    private final FilmMapper filmMapper = Mappers.getMapper(FilmMapper.class);
-    private final StaffMapper staffMapper = Mappers.getMapper(StaffMapper.class);
-    private final StaffRoleMapper staffRoleMapper = Mappers.getMapper(StaffRoleMapper.class);
+    @Autowired
+    FilmMapper filmMapper;
+    @Autowired
+    StaffMapper staffMapper;
+    @Autowired
+    StaffRoleMapper staffRoleMapper;
 
     @Override
     public List<StaffDto> getAllStaff() {
@@ -58,32 +60,13 @@ public class StaffServiceImp implements StaffService {
         staffRepository.deleteById(staffId);
     }
 
-    @Override
-    public Set<StaffRoleDto> getAllStaffRoleWithStaff(Long staffId) {
-        Optional<Staff> staff = staffRepository.findById(staffId);
-        if (staff.isPresent()) {
-            Set<StaffRole> staffRoles = new HashSet<>(staff.get().getStaff_roles());
-            return staffRoleMapper.setStaffRoleToSetDto(staffRoles);
-        }
-        return null;
-    }
 
     @Override
-    public void addStaffRoleToStaff(Long staffId, Long staffRoleId) throws Exception {
-        Staff staff = staffRepository.findById(staffId).orElseThrow(() -> new Exception());
-        StaffRole staffRole = staffRoleRepository.findById(staffRoleId).orElseThrow(() -> new Exception());
-        staff.getStaff_roles().add(staffRole);
-        staffRepository.save(staff);
-        staffRole.getStaffs().add(staff);
-        staffRoleRepository.save(staffRole);
-    }
-
-    @Override
-    public Set<FilmDto> getAllFilmWithStaff(Long staffId) {
+    public List<FilmDto> getAllFilmWithStaff(Long staffId) {
         Optional<Staff> staff = staffRepository.findById(staffId);
         if (staff.isPresent()) {
-            Set<Film> films = new HashSet<>(staff.get().getFilms());
-            return filmMapper.setFilmToSetDto(films);
+            List<Film> films = new ArrayList<>(staff.get().getFilms());
+            return filmMapper.listFilmToListDto(films);
         }
         return null;
     }

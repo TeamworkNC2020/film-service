@@ -5,7 +5,6 @@ import com.moviesandchill.film.service.dto.ViewHistoryDto;
 import com.moviesandchill.film.service.mapper.ViewHistoryMapper;
 import com.moviesandchill.film.service.repositories.ViewHistoryRepository;
 import com.moviesandchill.film.service.service.ViewHistoryService;
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +16,8 @@ public class ViewHistoryServiceImp implements ViewHistoryService {
 
     @Autowired
     ViewHistoryRepository viewHistoryRepository;
-    private  final ViewHistoryMapper viewHistoryMapper = Mappers.getMapper(ViewHistoryMapper.class);
+    @Autowired
+    ViewHistoryMapper viewHistoryMapper;
 
     @Override
     public List<ViewHistoryDto> getAllViewHistory() {

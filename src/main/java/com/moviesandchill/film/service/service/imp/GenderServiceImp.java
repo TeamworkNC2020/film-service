@@ -23,9 +23,12 @@ public class GenderServiceImp implements GenderService {
 
     @Autowired
     GenderRepository genderRepository;
+    @Autowired
     StaffRepository staffRepository;
-    private final GenderMapper genderMapper = Mappers.getMapper(GenderMapper.class);;
-    private final StaffMapper staffMapper = Mappers.getMapper(StaffMapper.class);;
+    @Autowired
+    GenderMapper genderMapper;
+    @Autowired
+    StaffMapper staffMapper;
 
     @Override
     public List<GenderDto> getAllGender() {

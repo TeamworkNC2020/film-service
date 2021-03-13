@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-03-09T17:41:53+0300",
+    date = "2021-03-13T10:50:31+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_202 (Oracle Corporation)"
 )
 @Component
@@ -23,6 +23,13 @@ public class GenderMapperImpl implements GenderMapper {
 
         Gender gender = new Gender();
 
+        if ( genderDto.getId_gender() != null ) {
+            gender.setId_gender( genderDto.getId_gender() );
+        }
+        if ( genderDto.getGender_title() != null ) {
+            gender.setGender_title( genderDto.getGender_title() );
+        }
+
         return gender;
     }
 
@@ -33,6 +40,13 @@ public class GenderMapperImpl implements GenderMapper {
         }
 
         GenderDto genderDto = new GenderDto();
+
+        if ( gender.getId_gender() != null ) {
+            genderDto.setId_gender( gender.getId_gender() );
+        }
+        if ( gender.getGender_title() != null ) {
+            genderDto.setGender_title( gender.getGender_title() );
+        }
 
         return genderDto;
     }

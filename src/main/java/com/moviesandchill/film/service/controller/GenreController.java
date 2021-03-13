@@ -47,7 +47,7 @@ public class GenreController {
     }
 
     @GetMapping("/{genreId}/films")
-    public Set<FilmDto> getAllFilmWithGenre(@PathVariable Long genreId) {
+    public List<FilmDto> getAllFilmWithGenre(@PathVariable Long genreId) {
         return genreService.getAllFilmWithGenre(genreId);
     }
 

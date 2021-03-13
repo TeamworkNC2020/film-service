@@ -3,6 +3,7 @@ package com.moviesandchill.film.service.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,7 +20,7 @@ public class Genre {
     private String genre_title;
 
     @ManyToMany(mappedBy = "genres")
-    private Set<Film> films;
+    private List<Film> films;
 
     public Long getId_genre() {
         return id_genre;
@@ -37,11 +38,4 @@ public class Genre {
         this.genre_title = genre_title;
     }
 
-    public Set<Film> getFilms() {
-        return films;
-    }
-
-    public void setFilms(Set<Film> films) {
-        this.films = films;
-    }
 }

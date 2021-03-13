@@ -11,19 +11,19 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class GenreServiceImp implements GenreService {
 
     @Autowired
     FilmRepository filmRepository;
+    @Autowired
     GenreRepository genreRepository;
-    private final FilmMapper filmMapper = Mappers.getMapper(FilmMapper.class);
-    private final GenreMapper genreMapper = Mappers.getMapper(GenreMapper.class);
+    @Autowired
+    FilmMapper filmMapper;
+    @Autowired
+    GenreMapper genreMapper;
 
     @Override
     public List<GenreDto> getAllGenre() {
@@ -55,11 +55,11 @@ public class GenreServiceImp implements GenreService {
     }
 
     @Override
-    public Set<FilmDto> getAllFilmWithGenre(Long genreId) {
+    public List<FilmDto> getAllFilmWithGenre(Long genreId) {
         Optional<Genre> genre = genreRepository.findById(genreId);
         if (genre.isPresent()) {
-            Set<Film> films = new HashSet<>(genre.get().getFilms());
-            return filmMapper.setFilmToSetDto(films);
+            List<Film> films = new ArrayList<>(genre.get().getFilms());
+            return filmMapper.listFilmToListDto(films);
         }
         return null;
     }
