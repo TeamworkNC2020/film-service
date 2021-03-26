@@ -25,6 +25,8 @@ public class FilmServiceImp implements FilmService {
     @Autowired
     ReviewRepository reviewRepository;
     @Autowired
+    ScreenshotRepository screenshotRepository;
+    @Autowired
     FilmMapper filmMapper;
     @Autowired
     StaffMapper staffMapper;
@@ -34,6 +36,8 @@ public class FilmServiceImp implements FilmService {
     ViewHistoryMapper viewHistoryMapper;
     @Autowired
     ReviewMapper reviewMapper;
+    @Autowired
+    ScreenshotMapper screenshotMapper;
 
     @Override
     public List<FilmDto> getAllFilm() {
@@ -137,6 +141,24 @@ public class FilmServiceImp implements FilmService {
         Film film = filmRepository.findById(film_id).orElseThrow(() -> new Exception());
         Review review = reviewRepository.findById(review_id).orElseThrow(() -> new Exception());
         film.getReviews().add(review);
+        filmRepository.save(film);
+    }
+
+    @Override
+    public List<ScreenshotDto> getAllScreenshotWithFilm(Long film_id) {
+        Optional<Film> film = filmRepository.findById(film_id);
+        if (film.isPresent()) {
+            List<Screenshot> screenshots = new ArrayList<>(film.get().getScreenshots());
+            return screenshotMapper.listScreenshotToListDto(screenshots);
+        }
+        return null;
+    }
+
+    @Override
+    public void addScreenshotToFilm(Long film_id, Long screenshot_id) throws Exception {
+        Film film = filmRepository.findById(film_id).orElseThrow(() -> new Exception());
+        Screenshot screenshot = screenshotRepository.findById(screenshot_id).orElseThrow(() -> new Exception());
+        film.getScreenshots().add(screenshot);
         filmRepository.save(film);
     }
 }

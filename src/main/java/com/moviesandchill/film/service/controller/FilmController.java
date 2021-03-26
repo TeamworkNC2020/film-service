@@ -1,10 +1,14 @@
 package com.moviesandchill.film.service.controller;
 
+import com.moviesandchill.film.service.domain.Film;
+import com.moviesandchill.film.service.domain.Screenshot;
 import com.moviesandchill.film.service.dto.*;
 import com.moviesandchill.film.service.service.FilmService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController()
@@ -83,5 +87,15 @@ public class FilmController {
     @PostMapping("/{filmId}/addReview/{reviewId}")
     public void addReviewToFilm(@PathVariable Long filmId,@PathVariable Long reviewId) throws Exception {
         filmService.addReviewToFilm(filmId,reviewId);
+    }
+
+    @GetMapping("/{filmId}/screenshots")
+    public List<ScreenshotDto> getAllScreenshotWithFilm(Long film_id) {
+        return filmService.getAllScreenshotWithFilm(film_id);
+    }
+
+    @PostMapping("/{filmId}/addScreenshot/{reviewId}")
+    public void addScreenshotToFilm(Long film_id, Long screenshot_id) throws Exception {
+        filmService.addScreenshotToFilm(film_id,screenshot_id);
     }
 }

@@ -68,6 +68,9 @@ public class Film {
     @OneToMany(mappedBy = "film")
     private List<Review> reviews = new ArrayList<Review>();
 
+    @OneToMany(mappedBy = "film")
+    private List<Screenshot> screenshots = new ArrayList<Screenshot>();
+
     public Long getId_film() {
         return id_film;
     }

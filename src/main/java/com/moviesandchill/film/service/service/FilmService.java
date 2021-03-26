@@ -32,4 +32,8 @@ public interface FilmService {
     List<ReviewDto> getAllReviewWithFilm(Long film_id);
 
     void addReviewToFilm(Long film_id,Long review_id) throws Exception;
+
+    List<ScreenshotDto> getAllScreenshotWithFilm(Long film_id);
+
+    void addScreenshotToFilm(Long film_id,Long screenshot_id) throws Exception;
 }
