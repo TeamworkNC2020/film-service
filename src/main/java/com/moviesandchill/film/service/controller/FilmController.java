@@ -90,12 +90,12 @@ public class FilmController {
     }
 
     @GetMapping("/{filmId}/screenshots")
-    public List<ScreenshotDto> getAllScreenshotWithFilm(@PathVariable Long film_id) {
-        return filmService.getAllScreenshotWithFilm(film_id);
+    public List<ScreenshotDto> getAllScreenshotWithFilm(@PathVariable Long filmId) {
+        return filmService.getAllScreenshotWithFilm(filmId);
     }
 
-    @PostMapping("/{filmId}/addScreenshot/{reviewId}")
-    public void addScreenshotToFilm(@PathVariable Long film_id,@PathVariable Long screenshot_id) throws Exception {
-        filmService.addScreenshotToFilm(film_id,screenshot_id);
+    @PostMapping("/{filmId}/addScreenshot/{screenshotId}")
+    public void addScreenshotToFilm(@PathVariable Long filmId,@PathVariable Long screenshotId) throws Exception {
+        filmService.addScreenshotToFilm(filmId,screenshotId);
     }
 }
