@@ -35,8 +35,8 @@ public class FilmController {
     }
 
     @GetMapping("/ratingFilm/{filmId}")
-    public float getRatingFilmById(@PathVariable Long film_id) {
-        return filmService.getRatingFilmById(film_id);
+    public float getRatingFilmById(@PathVariable Long filmId) {
+        return filmService.getRatingFilmById(filmId);
     }
 
     @PostMapping
