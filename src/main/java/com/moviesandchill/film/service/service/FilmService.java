@@ -19,6 +19,8 @@ public interface FilmService {
 
     List<GenreDto> getAllGenreWithFilm(Long film_id);
 
+    float getRatingFilmById(Long film_id);
+
     void addGenreToFilm(Long film_id,Long genre_id) throws Exception;
 
     List<StaffDto> getAllStaffWithFilm(Long film_id);

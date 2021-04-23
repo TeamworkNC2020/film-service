@@ -34,6 +34,11 @@ public class FilmController {
         return filmService.getFilmById(filmId);
     }
 
+    @GetMapping("/ratingFilm/{filmId}")
+    public float getRatingFilmById(@PathVariable Long film_id) {
+        return filmService.getRatingFilmById(film_id);
+    }
+
     @PostMapping
     public FilmDto addFilm(@RequestBody FilmDto filmDto) {
         return filmService.addFilm(filmDto);

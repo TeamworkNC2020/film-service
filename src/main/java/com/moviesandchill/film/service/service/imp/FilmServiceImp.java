@@ -79,6 +79,11 @@ public class FilmServiceImp implements FilmService {
     }
 
     @Override
+    public float getRatingFilmById(Long film_id) {
+        return filmRepository.findRatingFilmById(film_id);
+    }
+
+    @Override
     public void addGenreToFilm(Long film_id, Long genre_id) throws Exception {
         Film film = filmRepository.findById(film_id).orElseThrow(() -> new Exception());
         Genre genre = genreRepository.findById(genre_id).orElseThrow(() -> new Exception());
