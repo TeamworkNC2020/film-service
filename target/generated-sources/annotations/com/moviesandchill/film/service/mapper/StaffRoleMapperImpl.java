@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-04-23T15:30:29+0300",
+    date = "2021-04-23T16:39:48+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_202 (Oracle Corporation)"
 )
 @Component
@@ -28,6 +28,9 @@ public class StaffRoleMapperImpl implements StaffRoleMapper {
         if ( staff_role_dto.getId_staff_role() != null ) {
             staffRole.setId_staff_role( staff_role_dto.getId_staff_role() );
         }
+        if ( staff_role_dto.getRoleTitle() != null ) {
+            staffRole.setRoleTitle( staff_role_dto.getRoleTitle() );
+        }
 
         return staffRole;
     }
@@ -42,6 +45,9 @@ public class StaffRoleMapperImpl implements StaffRoleMapper {
 
         if ( staff_role.getId_staff_role() != null ) {
             staffRoleDto.setId_staff_role( staff_role.getId_staff_role() );
+        }
+        if ( staff_role.getRoleTitle() != null ) {
+            staffRoleDto.setRoleTitle( staff_role.getRoleTitle() );
         }
 
         return staffRoleDto;
