@@ -38,8 +38,8 @@ public class StaffRoleController {
         return staffRoleService.getStaffRoleById(staffRoleId);
     }
 
-    @GetMapping("/title/{staffRoleTitle}")
-    public StaffRoleDto getStaffRoleByTitle(@PathVariable String roleTitle) {
+    @GetMapping("/title")
+    public StaffRoleDto getStaffRoleByTitle(@RequestBody String roleTitle) {
         return staffRoleService.getStaffRoleByTitle(roleTitle);
     }
 
