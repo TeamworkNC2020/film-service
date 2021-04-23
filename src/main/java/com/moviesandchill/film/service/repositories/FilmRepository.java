@@ -9,6 +9,6 @@ import java.util.Optional;
 
 public interface FilmRepository extends JpaRepository<Film, Long> {
 
-    @Query("SELECT avg(rating_film) FROM Review where fk_film=?1 group by fk_film;")
+    @Query("SELECT avg(r.rating_film) FROM Review r where r.fk_film=?1 group by r.fk_film;")
     List<Object[]> findRatingFilmById(Long filmID);
 }
