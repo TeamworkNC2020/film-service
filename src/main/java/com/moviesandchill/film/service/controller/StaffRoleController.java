@@ -1,11 +1,13 @@
 package com.moviesandchill.film.service.controller;
 
+import com.moviesandchill.film.service.domain.StaffRole;
 import com.moviesandchill.film.service.dto.StaffDto;
 import com.moviesandchill.film.service.dto.StaffRoleDto;
 import com.moviesandchill.film.service.service.StaffRoleService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController()
@@ -34,6 +36,11 @@ public class StaffRoleController {
     @GetMapping("/{staffRoleId}")
     public StaffRoleDto getStaffRoleById(@PathVariable Long staffRoleId) {
         return staffRoleService.getStaffRoleById(staffRoleId);
+    }
+
+    @GetMapping("/title/{staffRoleTitle}")
+    public StaffRoleDto getStaffRoleByTitle(@PathVariable String roleTitle) {
+        return staffRoleService.getStaffRoleByTitle(roleTitle);
     }
 
     @PostMapping

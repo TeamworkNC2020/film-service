@@ -1,15 +1,10 @@
 package com.moviesandchill.film.service.controller;
 
-import com.moviesandchill.film.service.domain.Film;
-import com.moviesandchill.film.service.domain.Screenshot;
 import com.moviesandchill.film.service.dto.*;
 import com.moviesandchill.film.service.service.FilmService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 @RestController()
 @RequestMapping(

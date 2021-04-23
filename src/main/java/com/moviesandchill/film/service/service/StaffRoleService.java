@@ -14,6 +14,8 @@ public interface StaffRoleService {
 
     StaffRoleDto getStaffRoleById(Long staffRoleId);
 
+    StaffRoleDto getStaffRoleByTitle(String roleTitle);
+
     StaffRoleDto addStaffRole(StaffRoleDto staffRoleDto);
 
     void deleteStaffRoleById(Long staffRoleId);

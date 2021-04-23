@@ -46,6 +46,12 @@ public class StaffRoleServiceImp implements StaffRoleService {
     }
 
     @Override
+    public StaffRoleDto getStaffRoleByTitle(String roleTitle) {
+        Optional<StaffRole> staffRole = staffRoleRepository.findByRoleTitle(roleTitle);
+        return staffRole.map(staffRoleMapper::staffRoleToDto).orElse(null);
+    }
+
+    @Override
     public StaffRoleDto addStaffRole(StaffRoleDto staffRoleDto) {
         StaffRole staffRole = staffRoleMapper.dtoToStaffRole(staffRoleDto);
         staffRole = staffRoleRepository.save(staffRole);

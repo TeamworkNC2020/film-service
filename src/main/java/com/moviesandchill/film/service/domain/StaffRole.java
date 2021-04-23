@@ -18,8 +18,8 @@ public class StaffRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_staff_role;
 
-    @Column(name = "role_title")
-    private String role_title;
+    @Column(name = "roleTitle")
+    private String roleTitle;
 
     @OneToMany(mappedBy = "staff_role")
     private List<Staff> staffs = new ArrayList<>();
@@ -32,12 +32,5 @@ public class StaffRole {
         this.id_staff_role = id_staff_role;
     }
 
-    public String getRole_title() {
-        return role_title;
-    }
-
-    public void setRole_title(String role_title) {
-        this.role_title = role_title;
-    }
 
 }
