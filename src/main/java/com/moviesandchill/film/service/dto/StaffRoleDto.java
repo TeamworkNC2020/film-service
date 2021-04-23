@@ -14,5 +14,5 @@ public class StaffRoleDto {
 
     private Long id_staff_role;
 
-    private String role_title;
+    private String roleTitle;
 }
