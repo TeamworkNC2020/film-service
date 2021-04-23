@@ -80,7 +80,12 @@ public class FilmServiceImp implements FilmService {
 
     @Override
     public float getRatingFilmById(Long film_id) {
-        return Float.parseFloat(filmRepository.findRatingFilmById(film_id).get());
+        List<Object[]> rating = filmRepository.findRatingFilmById(film_id);
+        if(!rating.isEmpty() && rating.get(0)[0] != null) {
+            String ratingFilm = rating.get(0)[0].toString();
+            return Float.parseFloat(ratingFilm);
+        }
+        return 0;
     }
 
     @Override
