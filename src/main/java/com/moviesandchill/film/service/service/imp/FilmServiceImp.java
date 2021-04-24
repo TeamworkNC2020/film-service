@@ -27,17 +27,25 @@ public class FilmServiceImp implements FilmService {
     @Autowired
     ScreenshotRepository screenshotRepository;
     @Autowired
+    AgeLimitRepository ageLimitRepository;
+    @Autowired
+    CountryRepository countryRepository;
+    @Autowired
     FilmMapper filmMapper;
     @Autowired
     StaffMapper staffMapper;
     @Autowired
     GenreMapper genreMapper;
     @Autowired
+    AgeLimitMapper ageLimitMapper;
+    @Autowired
     ViewHistoryMapper viewHistoryMapper;
     @Autowired
     ReviewMapper reviewMapper;
     @Autowired
     ScreenshotMapper screenshotMapper;
+    @Autowired
+    CountryMapper countryMapper;
 
     @Override
     public List<FilmDto> getAllFilm() {
@@ -86,6 +94,42 @@ public class FilmServiceImp implements FilmService {
             return Float.parseFloat(ratingFilm);
         }
         return 0;
+    }
+
+    @Override
+    public AgeLimitDto getAgeLimitByFilmId(Long film_id) {
+        Optional<Film> film = filmRepository.findById(film_id);
+        if (film.isPresent()) {
+            AgeLimit ageLimit = film.get().getAge_limit();
+            return ageLimitMapper.ageLimitToDto(ageLimit);
+        }
+        return null;
+    }
+
+    @Override
+    public void setAgeLimitByFilmId(Long film_id, Long ageLimitID) throws Exception {
+        Film film = filmRepository.findById(film_id).orElseThrow(() -> new Exception());
+        AgeLimit ageLimit = ageLimitRepository.findById(ageLimitID).orElseThrow(() -> new Exception());
+        film.setAge_limit(ageLimit);
+        filmRepository.save(film);
+    }
+
+    @Override
+    public CountryDto getCountryByFilmId(Long film_id) {
+        Optional<Film> film = filmRepository.findById(film_id);
+        if (film.isPresent()) {
+            Country country = film.get().getCountry();
+            return countryMapper.countryToDto(country);
+        }
+        return null;
+    }
+
+    @Override
+    public void setCountryByFilmId(Long film_id, Long countryID) throws Exception {
+        Film film = filmRepository.findById(film_id).orElseThrow(() -> new Exception());
+        Country country = countryRepository.findById(countryID).orElseThrow(() -> new Exception());
+        film.setCountry(country);
+        filmRepository.save(film);
     }
 
     @Override

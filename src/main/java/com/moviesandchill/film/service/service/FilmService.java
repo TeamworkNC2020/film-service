@@ -21,6 +21,14 @@ public interface FilmService {
 
     float getRatingFilmById(Long film_id);
 
+    AgeLimitDto getAgeLimitByFilmId(Long film_id);
+
+    void setAgeLimitByFilmId(Long film_id,Long ageLimitID) throws Exception;
+
+    CountryDto getCountryByFilmId(Long film_id);
+
+    void setCountryByFilmId(Long film_id,Long countryID) throws Exception;
+
     void addGenreToFilm(Long film_id,Long genre_id) throws Exception;
 
     List<StaffDto> getAllStaffWithFilm(Long film_id);

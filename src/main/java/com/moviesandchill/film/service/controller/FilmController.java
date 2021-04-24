@@ -5,6 +5,7 @@ import com.moviesandchill.film.service.service.FilmService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController()
 @RequestMapping(
@@ -37,6 +38,26 @@ public class FilmController {
     @GetMapping("/ratingFilm/{filmId}")
     public float getRatingFilmById(@PathVariable Long filmId) {
         return filmService.getRatingFilmById(filmId);
+    }
+
+    @GetMapping("/{filmId}/ageLimit")
+    public AgeLimitDto getAgeLimitByFilmId(@PathVariable Long filmId) {
+        return filmService.getAgeLimitByFilmId(filmId);
+    }
+
+    @PostMapping("/{filmId}/setAgeLimit/{ageLimitID}")
+    public void setAgeLimitByFilmId(@PathVariable Long filmId,@PathVariable  Long ageLimitID) throws Exception {
+        filmService.setAgeLimitByFilmId(filmId,ageLimitID);
+    }
+
+    @GetMapping("/{filmId}/country")
+    public CountryDto getCountryByFilmId(@PathVariable Long filmId) {
+        return filmService.getCountryByFilmId(filmId);
+    }
+
+    @PostMapping("/{filmId}/setCountry/{countryID}")
+    public void setCountryByFilmId(@PathVariable Long filmId,@PathVariable  Long countryID) throws Exception {
+        filmService.setCountryByFilmId(filmId,countryID);
     }
 
     @PostMapping
