@@ -1,5 +1,7 @@
 package com.moviesandchill.film.service.controller;
 
+import com.moviesandchill.film.service.domain.Staff;
+import com.moviesandchill.film.service.domain.StaffRole;
 import com.moviesandchill.film.service.dto.*;
 import com.moviesandchill.film.service.service.FilmService;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +40,16 @@ public class FilmController {
     @GetMapping("/ratingFilm/{filmId}")
     public float getRatingFilmById(@PathVariable Long filmId) {
         return filmService.getRatingFilmById(filmId);
+    }
+
+    @GetMapping("/{filmId}/actors")
+    public List<StaffDto> getAllActorsByFilm(Long film_id) throws Exception {
+        return filmService.getAllActorsByFilm(film_id);
+    }
+
+    @GetMapping("/{filmId}/producers")
+    public List<StaffDto> getAllProducersByFilm(Long film_id) throws Exception{
+        return filmService.getAllProducersByFilm(film_id);
     }
 
     @GetMapping("/{filmId}/ageLimit")

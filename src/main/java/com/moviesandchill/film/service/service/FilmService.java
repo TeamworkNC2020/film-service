@@ -33,6 +33,10 @@ public interface FilmService {
 
     List<StaffDto> getAllStaffWithFilm(Long film_id);
 
+    List<StaffDto> getAllActorsByFilm(Long film_id) throws Exception;
+
+    List<StaffDto> getAllProducersByFilm(Long film_id) throws Exception;
+
     void addStaffToFilm(Long film_id,Long staff_id) throws Exception;
 
     List<ViewHistoryDto> getAllViewHistoryWithFilm(Long film_id);

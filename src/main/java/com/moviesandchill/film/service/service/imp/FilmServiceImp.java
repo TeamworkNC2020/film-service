@@ -31,6 +31,8 @@ public class FilmServiceImp implements FilmService {
     @Autowired
     CountryRepository countryRepository;
     @Autowired
+    StaffRoleRepository staffRoleRepository;
+    @Autowired
     FilmMapper filmMapper;
     @Autowired
     StaffMapper staffMapper;
@@ -148,6 +150,26 @@ public class FilmServiceImp implements FilmService {
         if (film.isPresent()) {
             List<Staff> staffs = new ArrayList<>(film.get().getStaffs());
             return staffMapper.listStaffToListDto(staffs);
+        }
+        return null;
+    }
+
+    @Override
+    public List<StaffDto> getAllActorsByFilm(Long film_id) throws Exception {
+        Optional<StaffRole> staffRole = staffRoleRepository.findByRoleTitle("Актер");
+        if(staffRole.isPresent()){
+            List<Staff> actors = staffRepository.findStaffByRoleAndFilm(staffRole.get().getId_staff_role(),film_id);
+            return staffMapper.listStaffToListDto(actors);
+        }
+        return null;
+    }
+
+    @Override
+    public List<StaffDto> getAllProducersByFilm(Long film_id) throws Exception{
+        Optional<StaffRole> staffRole = staffRoleRepository.findByRoleTitle("Режиссер");
+        if(staffRole.isPresent()){
+            List<Staff> producers = staffRepository.findStaffByRoleAndFilm(staffRole.get().getId_staff_role(),film_id);
+            return staffMapper.listStaffToListDto(producers);
         }
         return null;
     }
