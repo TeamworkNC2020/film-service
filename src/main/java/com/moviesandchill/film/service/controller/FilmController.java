@@ -43,13 +43,13 @@ public class FilmController {
     }
 
     @GetMapping("/{filmId}/actors")
-    public List<StaffDto> getAllActorsByFilm(Long film_id) throws Exception {
-        return filmService.getAllActorsByFilm(film_id);
+    public List<StaffDto> getAllActorsByFilm(@PathVariable Long filmId) throws Exception {
+        return filmService.getAllActorsByFilm(filmId);
     }
 
     @GetMapping("/{filmId}/producers")
-    public List<StaffDto> getAllProducersByFilm(Long film_id) throws Exception{
-        return filmService.getAllProducersByFilm(film_id);
+    public List<StaffDto> getAllProducersByFilm(@PathVariable Long filmId) throws Exception{
+        return filmService.getAllProducersByFilm(filmId);
     }
 
     @GetMapping("/{filmId}/ageLimit")
