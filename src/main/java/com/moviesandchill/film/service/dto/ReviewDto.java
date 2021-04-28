@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import java.time.LocalDate;
 
 @Data
@@ -13,13 +14,13 @@ import java.time.LocalDate;
 @Builder
 public class ReviewDto {
 
-    private Long id_review;
+    private Long idReview;
 
-    private Float rating_film;
+    private Float ratingFilm;
 
     private String review;
 
-    private LocalDate review_date;
+    private LocalDate reviewDate;
 
-    private Long id_user;
+    private Long idUser;
 }

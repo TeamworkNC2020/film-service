@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-04-23T16:39:47+0300",
+    date = "2021-04-28T23:13:34+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_202 (Oracle Corporation)"
 )
 @Component
@@ -23,20 +23,20 @@ public class ReviewMapperImpl implements ReviewMapper {
 
         Review review = new Review();
 
-        if ( review_dto.getId_review() != null ) {
-            review.setId_review( review_dto.getId_review() );
+        if ( review_dto.getIdReview() != null ) {
+            review.setIdReview( review_dto.getIdReview() );
         }
-        if ( review_dto.getRating_film() != null ) {
-            review.setRating_film( review_dto.getRating_film() );
+        if ( review_dto.getRatingFilm() != null ) {
+            review.setRatingFilm( review_dto.getRatingFilm() );
         }
         if ( review_dto.getReview() != null ) {
             review.setReview( review_dto.getReview() );
         }
-        if ( review_dto.getReview_date() != null ) {
-            review.setReview_date( review_dto.getReview_date() );
+        if ( review_dto.getReviewDate() != null ) {
+            review.setReviewDate( review_dto.getReviewDate() );
         }
-        if ( review_dto.getId_user() != null ) {
-            review.setId_user( review_dto.getId_user() );
+        if ( review_dto.getIdUser() != null ) {
+            review.setIdUser( review_dto.getIdUser() );
         }
 
         return review;
@@ -50,20 +50,20 @@ public class ReviewMapperImpl implements ReviewMapper {
 
         ReviewDto reviewDto = new ReviewDto();
 
-        if ( review.getId_review() != null ) {
-            reviewDto.setId_review( review.getId_review() );
+        if ( review.getIdReview() != null ) {
+            reviewDto.setIdReview( review.getIdReview() );
         }
-        if ( review.getRating_film() != null ) {
-            reviewDto.setRating_film( review.getRating_film() );
+        if ( review.getRatingFilm() != null ) {
+            reviewDto.setRatingFilm( review.getRatingFilm() );
         }
         if ( review.getReview() != null ) {
             reviewDto.setReview( review.getReview() );
         }
-        if ( review.getReview_date() != null ) {
-            reviewDto.setReview_date( review.getReview_date() );
+        if ( review.getReviewDate() != null ) {
+            reviewDto.setReviewDate( review.getReviewDate() );
         }
-        if ( review.getId_user() != null ) {
-            reviewDto.setId_user( review.getId_user() );
+        if ( review.getIdUser() != null ) {
+            reviewDto.setIdUser( review.getIdUser() );
         }
 
         return reviewDto;

@@ -7,6 +7,10 @@ import com.moviesandchill.film.service.repositories.*;
 import com.moviesandchill.film.service.service.FilmService;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -52,6 +56,44 @@ public class FilmServiceImp implements FilmService {
     @Override
     public List<FilmDto> getAllFilm() {
         List<Film> films = filmRepository.findAll();
+        return filmMapper.listFilmToListDto(films);
+    }
+
+    @Override
+    public List<FilmDto> getFirstPopularFilms() {
+        List<FilmDto> result = new ArrayList<>();
+        Pageable page = PageRequest.of(0, 8,Sort.by(Sort.Direction.DESC, "rating"));
+        List<Object[]> popularFilm = filmRepository.findPopularIdFilm(page);
+        if(!popularFilm.isEmpty()) {
+            List<Long> idlist = new ArrayList<>();
+            Map<Long,Double> mapfilms = new HashMap<>();
+            for(Object[] obj : popularFilm){
+                idlist.add((Long) obj[0]);
+                mapfilms.put((Long) obj[0],(Double) obj[1]);
+            }
+            Iterable<Long> iterId = idlist;
+            List<Film> Film = filmRepository.findFilmIds(iterId);
+            for(Film film : Film){
+                FilmDto filmDto = filmMapper.filmToDto(film);
+                filmDto.setRating(mapfilms.get(film.getIdFilm()));
+                result.add(filmDto);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public List<FilmDto> getFirstNewFilms() {
+        Pageable page = PageRequest.of(0, 8,Sort.by(Sort.Direction.DESC, "releaseDate"));
+        List<Film> films = filmRepository.findAll(page).getContent();
+        return filmMapper.listFilmToListDto(films);
+    }
+
+    @Override
+    public List<FilmDto> getRandomThreeFilms() {
+        int len = (int) filmRepository.count()/ 3;
+        int idx =(int) new Random().nextInt(len);
+        List<Film> films = filmRepository.findAll(PageRequest.of(idx, 3)).getContent();
         return filmMapper.listFilmToListDto(films);
     }
 

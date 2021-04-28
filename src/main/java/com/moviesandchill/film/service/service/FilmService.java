@@ -9,6 +9,12 @@ public interface FilmService {
 
     List<FilmDto> getAllFilm();
 
+    List<FilmDto> getFirstPopularFilms();
+
+    List<FilmDto> getFirstNewFilms();
+
+    List<FilmDto> getRandomThreeFilms();
+
     void deleteAllFilm();
 
     FilmDto getFilmById(Long film_id);

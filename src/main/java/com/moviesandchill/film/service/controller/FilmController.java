@@ -1,9 +1,13 @@
 package com.moviesandchill.film.service.controller;
 
+import com.moviesandchill.film.service.domain.Film;
 import com.moviesandchill.film.service.domain.Staff;
 import com.moviesandchill.film.service.domain.StaffRole;
 import com.moviesandchill.film.service.dto.*;
 import com.moviesandchill.film.service.service.FilmService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +29,21 @@ public class FilmController {
     @GetMapping
     public List<FilmDto> getAllFilm() {
         return filmService.getAllFilm();
+    }
+
+    @GetMapping("/newfilms")
+    public List<FilmDto> getFirstNewFilms() {
+        return filmService.getFirstNewFilms();
+    }
+
+    @GetMapping("/randomthreefilms")
+    public List<FilmDto> getRandomThreeFilms() {
+        return filmService.getRandomThreeFilms();
+    }
+
+    @GetMapping("/popularfilms")
+    public List<FilmDto> getFirstPopularFilms() {
+        return filmService.getFirstPopularFilms();
     }
 
     @DeleteMapping
