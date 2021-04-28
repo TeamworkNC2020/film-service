@@ -60,41 +60,53 @@ public class FilmServiceImp implements FilmService {
     }
 
     @Override
-    public List<FilmDto> getFirstPopularFilms() {
-        List<FilmDto> result = new ArrayList<>();
+    public List<FilmPageDto> getFirstPopularFilms() {
+        List<FilmPageDto> result = new ArrayList<>();
         Pageable page = PageRequest.of(0, 8,Sort.by(Sort.Direction.DESC, "rating"));
         List<Object[]> popularFilm = filmRepository.findPopularIdFilm(page);
         if(!popularFilm.isEmpty()) {
             List<Long> idlist = new ArrayList<>();
-            Map<Long,Double> mapfilms = new HashMap<>();
+            Map<Long,Float> mapfilms = new HashMap<>();
             for(Object[] obj : popularFilm){
                 idlist.add((Long) obj[0]);
-                mapfilms.put((Long) obj[0],(Double) obj[1]);
+                mapfilms.put((Long) obj[0],(Float) obj[1]);
             }
             Iterable<Long> iterId = idlist;
             List<Film> Film = filmRepository.findFilmIds(iterId);
             for(Film film : Film){
-                FilmDto filmDto = filmMapper.filmToDto(film);
-                filmDto.setRating(mapfilms.get(film.getIdFilm()));
-                result.add(filmDto);
+                result.add(FilmMapper.filmToPage(film,
+                        getRatingFilmById(film.getIdFilm()),
+                        getAgeLimitByFilmId(film.getIdFilm())));
             }
         }
         return result;
     }
 
     @Override
-    public List<FilmDto> getFirstNewFilms() {
+    public List<FilmPageDto> getFirstNewFilms() {
         Pageable page = PageRequest.of(0, 8,Sort.by(Sort.Direction.DESC, "releaseDate"));
         List<Film> films = filmRepository.findAll(page).getContent();
-        return filmMapper.listFilmToListDto(films);
+        List<FilmPageDto> filmPageDtos = new ArrayList<>();
+        for(Film film : films){
+            filmPageDtos.add(FilmMapper.filmToPage(film,
+                    getRatingFilmById(film.getIdFilm()),
+                    getAgeLimitByFilmId(film.getIdFilm())));
+        }
+        return filmPageDtos;
     }
 
     @Override
-    public List<FilmDto> getRandomThreeFilms() {
+    public List<FilmPageDto> getRandomThreeFilms() {
         int len = (int) filmRepository.count()/ 3;
         int idx =(int) new Random().nextInt(len);
         List<Film> films = filmRepository.findAll(PageRequest.of(idx, 3)).getContent();
-        return filmMapper.listFilmToListDto(films);
+        List<FilmPageDto> filmPageDtos = new ArrayList<>();
+        for(Film film : films){
+            filmPageDtos.add(FilmMapper.filmToPage(film,
+                    getRatingFilmById(film.getIdFilm()),
+                    getAgeLimitByFilmId(film.getIdFilm())));
+        }
+        return filmPageDtos;
     }
 
     @Override

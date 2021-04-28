@@ -1,5 +1,6 @@
 package com.moviesandchill.film.service.service;
 
+import com.moviesandchill.film.service.domain.FilmPageDto;
 import com.moviesandchill.film.service.dto.*;
 
 import java.util.List;
@@ -9,11 +10,11 @@ public interface FilmService {
 
     List<FilmDto> getAllFilm();
 
-    List<FilmDto> getFirstPopularFilms();
+    List<FilmPageDto> getFirstPopularFilms();
 
-    List<FilmDto> getFirstNewFilms();
+    List<FilmPageDto> getFirstNewFilms();
 
-    List<FilmDto> getRandomThreeFilms();
+    List<FilmPageDto> getRandomThreeFilms();
 
     void deleteAllFilm();
 

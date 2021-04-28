@@ -2,6 +2,7 @@ package com.moviesandchill.film.service.mapper;
 
 import com.moviesandchill.film.service.domain.Film;
 import com.moviesandchill.film.service.dto.FilmDto;
+import com.moviesandchill.film.service.dto.FilmDto.FilmDtoBuilder;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-04-28T23:13:35+0300",
+    date = "2021-04-29T01:03:09+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_202 (Oracle Corporation)"
 )
 @Component
@@ -62,37 +63,37 @@ public class FilmMapperImpl implements FilmMapper {
             return null;
         }
 
-        FilmDto filmDto = new FilmDto();
+        FilmDtoBuilder filmDto = FilmDto.builder();
 
         if ( film.getIdFilm() != null ) {
-            filmDto.setIdFilm( film.getIdFilm() );
+            filmDto.idFilm( film.getIdFilm() );
         }
         if ( film.getFilmTitle() != null ) {
-            filmDto.setFilmTitle( film.getFilmTitle() );
+            filmDto.filmTitle( film.getFilmTitle() );
         }
         if ( film.getDuration() != null ) {
-            filmDto.setDuration( film.getDuration() );
+            filmDto.duration( film.getDuration() );
         }
         if ( film.getReleaseDate() != null ) {
-            filmDto.setReleaseDate( film.getReleaseDate() );
+            filmDto.releaseDate( film.getReleaseDate() );
         }
         if ( film.getFilmPoster() != null ) {
-            filmDto.setFilmPoster( film.getFilmPoster() );
+            filmDto.filmPoster( film.getFilmPoster() );
         }
         if ( film.getFilmTrailer() != null ) {
-            filmDto.setFilmTrailer( film.getFilmTrailer() );
+            filmDto.filmTrailer( film.getFilmTrailer() );
         }
         if ( film.getFilmVideo() != null ) {
-            filmDto.setFilmVideo( film.getFilmVideo() );
+            filmDto.filmVideo( film.getFilmVideo() );
         }
         if ( film.getFilmBudget() != null ) {
-            filmDto.setFilmBudget( film.getFilmBudget() );
+            filmDto.filmBudget( film.getFilmBudget() );
         }
         if ( film.getDescription() != null ) {
-            filmDto.setDescription( film.getDescription() );
+            filmDto.description( film.getDescription() );
         }
 
-        return filmDto;
+        return filmDto.build();
     }
 
     @Override
