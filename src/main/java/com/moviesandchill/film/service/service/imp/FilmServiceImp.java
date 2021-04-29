@@ -78,10 +78,8 @@ public class FilmServiceImp implements FilmService {
         List<Object[]> popularFilm = filmRepository.findPopularIdFilm(page);
         if(!popularFilm.isEmpty()) {
             List<Long> idlist = new ArrayList<>();
-            Map<Long,Float> mapfilms = new HashMap<>();
             for(Object[] obj : popularFilm){
                 idlist.add((Long) obj[0]);
-                mapfilms.put((Long) obj[0],(Float) obj[1]);
             }
             Iterable<Long> iterId = idlist;
             List<Film> Film = filmRepository.findFilmIds(iterId);
