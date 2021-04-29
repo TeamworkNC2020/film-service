@@ -38,6 +38,26 @@ public class StaffServiceImp implements StaffService {
     }
 
     @Override
+    public List<StaffDto> getAllActorsStaff() {
+        Optional<StaffRole> staffRole = staffRoleRepository.findByRoleTitle("Актер");
+        if(staffRole.isPresent()){
+            List<Staff> actors = staffRepository.findStaffByRole(staffRole.get().getId_staff_role());
+            return staffMapper.listStaffToListDto(actors);
+        }
+        return null;
+    }
+
+    @Override
+    public List<StaffDto> getAllProducersStaff() {
+        Optional<StaffRole> staffRole = staffRoleRepository.findByRoleTitle("Режиссер");
+        if(staffRole.isPresent()){
+            List<Staff> actors = staffRepository.findStaffByRole(staffRole.get().getId_staff_role());
+            return staffMapper.listStaffToListDto(actors);
+        }
+        return null;
+    }
+
+    @Override
     public void deleteAllStaff() {
         staffRepository.deleteAll();
     }

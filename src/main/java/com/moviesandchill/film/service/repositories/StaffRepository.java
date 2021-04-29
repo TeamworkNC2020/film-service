@@ -14,4 +14,9 @@ public interface StaffRepository extends JpaRepository<Staff, Long> {
             "\tleft join f.staffs s \n" +
             "\twhere f.idFilm = ?2 and s.staff_role.id_staff_role= ?1")
     List<Staff> findStaffByRoleAndFilm(Long roleId, Long filmId);
+
+    @Query(value = "SELECT s \n" +
+            "\tFROM Staff s \n" +
+            "\twhere  s.staff_role.id_staff_role= ?1")
+    List<Staff> findStaffByRole(Long roleId);
 }

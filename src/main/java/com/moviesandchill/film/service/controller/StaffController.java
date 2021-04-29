@@ -1,5 +1,7 @@
 package com.moviesandchill.film.service.controller;
 
+import com.moviesandchill.film.service.domain.Staff;
+import com.moviesandchill.film.service.domain.StaffRole;
 import com.moviesandchill.film.service.dto.FilmDto;
 import com.moviesandchill.film.service.dto.StaffDto;
 import com.moviesandchill.film.service.dto.StaffRoleDto;
@@ -7,6 +9,7 @@ import com.moviesandchill.film.service.service.StaffService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController()
@@ -25,6 +28,16 @@ public class StaffController {
     @GetMapping
     public List<StaffDto> getAllStaff() {
         return staffService.getAllStaff();
+    }
+
+    @GetMapping("/actors")
+    public List<StaffDto> getAllActorsStaff() {
+        return staffService.getAllActorsStaff();
+    }
+
+    @GetMapping("/producerss")
+    public List<StaffDto> getAllProducersStaff() {
+        return staffService.getAllProducersStaff();
     }
 
     @DeleteMapping

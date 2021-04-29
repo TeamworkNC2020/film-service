@@ -11,6 +11,10 @@ public interface StaffService {
 
     List<StaffDto> getAllStaff();
 
+    List<StaffDto> getAllActorsStaff();
+
+    List<StaffDto> getAllProducersStaff();
+
     void deleteAllStaff();
 
     StaffDto getStaffById(Long staffId);

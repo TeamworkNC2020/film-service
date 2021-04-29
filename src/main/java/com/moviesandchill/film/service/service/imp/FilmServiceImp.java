@@ -60,6 +60,18 @@ public class FilmServiceImp implements FilmService {
     }
 
     @Override
+    public List<FilmPageDto> getAllPageFilm() {
+        List<Film> films = filmRepository.findAll();
+        List<FilmPageDto> filmPageDtos = new ArrayList<>();
+        for(Film film : films){
+            filmPageDtos.add(FilmMapper.filmToPage(film,
+                    getRatingFilmById(film.getIdFilm()),
+                    getAgeLimitByFilmId(film.getIdFilm())));
+        }
+        return filmPageDtos;
+    }
+
+    @Override
     public List<FilmPageDto> getFirstPopularFilms() {
         List<FilmPageDto> result = new ArrayList<>();
         Pageable page = PageRequest.of(0, 8,Sort.by(Sort.Direction.DESC, "rating"));

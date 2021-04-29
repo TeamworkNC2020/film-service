@@ -10,6 +10,8 @@ public interface FilmService {
 
     List<FilmDto> getAllFilm();
 
+    List<FilmPageDto> getAllPageFilm();
+
     List<FilmPageDto> getFirstPopularFilms();
 
     List<FilmPageDto> getFirstNewFilms();

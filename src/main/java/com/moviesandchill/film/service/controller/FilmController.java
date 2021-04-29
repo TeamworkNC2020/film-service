@@ -1,18 +1,11 @@
 package com.moviesandchill.film.service.controller;
 
-import com.moviesandchill.film.service.domain.Film;
 import com.moviesandchill.film.service.domain.FilmPageDto;
-import com.moviesandchill.film.service.domain.Staff;
-import com.moviesandchill.film.service.domain.StaffRole;
 import com.moviesandchill.film.service.dto.*;
 import com.moviesandchill.film.service.service.FilmService;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController()
 @RequestMapping(
@@ -30,6 +23,11 @@ public class FilmController {
     @GetMapping
     public List<FilmDto> getAllFilm() {
         return filmService.getAllFilm();
+    }
+
+    @GetMapping("/allpage")
+    public List<FilmPageDto> getAllPageFilm() {
+        return filmService.getAllPageFilm();
     }
 
     @GetMapping("/newfilms")
