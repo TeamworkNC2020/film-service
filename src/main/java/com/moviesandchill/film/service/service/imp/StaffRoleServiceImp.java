@@ -77,7 +77,7 @@ public class StaffRoleServiceImp implements StaffRoleService {
     public void addStaffToStaffRole(Long staffId, Long staffRoleId) throws Exception {
         StaffRole staffRole = staffRoleRepository.findById(staffRoleId).orElseThrow(() -> new Exception());
         Staff staff = staffRepository.findById(staffId).orElseThrow(() -> new Exception());
-        staffRole.getStaffs().add(staff);
-        staffRoleRepository.save(staffRole);
+        staff.setStaff_role(staffRole);
+        staffRepository.save(staff);
     }
 }

@@ -73,7 +73,7 @@ public class CountryServiceImp implements CountryService {
     public void addFilmToCountry(Long film_id, Long country_id) throws Exception {
         Film film = filmRepository.findById(film_id).orElseThrow(() -> new Exception());
         Country country = countryRepository.findById(country_id).orElseThrow(() -> new Exception());
-        country.getFilms().add(film);
-        countryRepository.save(country);
+        film.setCountry(country);
+        filmRepository.save(film);
     }
 }

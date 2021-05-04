@@ -74,7 +74,7 @@ public class AgeLimitServiceImp implements AgeLimitService {
     public void addFilmToAgeLimit(Long film_id, Long agelimit_id) throws Exception {
         Film film = filmRepository.findById(film_id).orElseThrow(() -> new Exception());
         AgeLimit age_limit = ageRepository.findById(agelimit_id).orElseThrow(() -> new Exception());
-        age_limit.getFilms().add(film);
-        ageRepository.save(age_limit);
+        film.setAge_limit(age_limit);
+        filmRepository.save(film);
     }
 }

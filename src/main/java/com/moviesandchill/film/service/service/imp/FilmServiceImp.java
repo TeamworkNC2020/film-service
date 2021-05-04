@@ -260,8 +260,8 @@ public class FilmServiceImp implements FilmService {
     public void addViewHistoryToFilm(Long film_id, Long viewHistory_id) throws Exception {
         Film film = filmRepository.findById(film_id).orElseThrow(() -> new Exception());
         ViewHistory viewHistory = viewHistoryRepository.findById(viewHistory_id).orElseThrow(() -> new Exception());
-        film.getView_histories().add(viewHistory);
-        filmRepository.save(film);
+        viewHistory.setFilm(film);
+        viewHistoryRepository.save(viewHistory);
     }
 
     @Override
@@ -278,8 +278,8 @@ public class FilmServiceImp implements FilmService {
     public void addReviewToFilm(Long film_id, Long review_id) throws Exception {
         Film film = filmRepository.findById(film_id).orElseThrow(() -> new Exception());
         Review review = reviewRepository.findById(review_id).orElseThrow(() -> new Exception());
-        film.getReviews().add(review);
-        filmRepository.save(film);
+        review.setFilm(film);
+        reviewRepository.save(review);
     }
 
     @Override
@@ -296,7 +296,7 @@ public class FilmServiceImp implements FilmService {
     public void addScreenshotToFilm(Long film_id, Long screenshot_id) throws Exception {
         Film film = filmRepository.findById(film_id).orElseThrow(() -> new Exception());
         Screenshot screenshot = screenshotRepository.findById(screenshot_id).orElseThrow(() -> new Exception());
-        film.getScreenshots().add(screenshot);
-        filmRepository.save(film);
+        screenshot.setFilm(film);
+        screenshotRepository.save(screenshot);
     }
 }

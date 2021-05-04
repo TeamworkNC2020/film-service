@@ -28,8 +28,6 @@ public class StaffServiceImp implements StaffService {
     FilmMapper filmMapper;
     @Autowired
     StaffMapper staffMapper;
-    @Autowired
-    StaffRoleMapper staffRoleMapper;
 
     @Override
     public List<StaffDto> getAllStaff() {
