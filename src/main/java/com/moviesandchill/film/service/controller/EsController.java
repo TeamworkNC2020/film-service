@@ -1,6 +1,7 @@
 package com.moviesandchill.film.service.controller;
 
 import com.moviesandchill.film.service.dto.FilmDto;
+import com.moviesandchill.film.service.dto.FilmPageDto;
 import com.moviesandchill.film.service.service.imp.EsService;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class EsController {
     }
 
     @GetMapping("/search")
-    public List<FilmDto> search(@RequestParam("search") String searchString) throws IOException {
+    public List<FilmPageDto> search(@RequestParam("search") String searchString) throws IOException {
         return esService.search(searchString);
     }
 }

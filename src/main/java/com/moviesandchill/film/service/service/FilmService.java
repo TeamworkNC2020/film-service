@@ -1,10 +1,9 @@
 package com.moviesandchill.film.service.service;
 
-import com.moviesandchill.film.service.domain.FilmPageDto;
+import com.moviesandchill.film.service.dto.FilmPageDto;
 import com.moviesandchill.film.service.dto.*;
 
 import java.util.List;
-import java.util.Set;
 
 public interface FilmService {
 

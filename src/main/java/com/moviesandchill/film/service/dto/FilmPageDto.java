@@ -1,4 +1,4 @@
-package com.moviesandchill.film.service.domain;
+package com.moviesandchill.film.service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

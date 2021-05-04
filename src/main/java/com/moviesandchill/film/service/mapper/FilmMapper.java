@@ -1,7 +1,7 @@
 package com.moviesandchill.film.service.mapper;
 
 import com.moviesandchill.film.service.domain.Film;
-import com.moviesandchill.film.service.domain.FilmPageDto;
+import com.moviesandchill.film.service.dto.FilmPageDto;
 import com.moviesandchill.film.service.dto.AgeLimitDto;
 import com.moviesandchill.film.service.dto.FilmDto;
 import org.mapstruct.Mapper;

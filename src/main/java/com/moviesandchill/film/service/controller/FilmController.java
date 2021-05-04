@@ -1,6 +1,6 @@
 package com.moviesandchill.film.service.controller;
 
-import com.moviesandchill.film.service.domain.FilmPageDto;
+import com.moviesandchill.film.service.dto.FilmPageDto;
 import com.moviesandchill.film.service.dto.*;
 import com.moviesandchill.film.service.service.FilmService;
 import org.springframework.web.bind.annotation.*;

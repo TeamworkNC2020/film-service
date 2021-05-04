@@ -1,6 +1,8 @@
 package com.moviesandchill.film.service.service.imp;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.moviesandchill.film.service.dto.AgeLimitDto;
+import com.moviesandchill.film.service.dto.FilmPageDto;
 import com.moviesandchill.film.service.dto.FilmDto;
 import com.moviesandchill.film.service.service.FilmService;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
@@ -54,21 +56,26 @@ public class EsService {
         }
     }
 
-    public List<FilmDto> search(String searchString) throws IOException {
+    public List<FilmPageDto> search(String searchString) throws IOException {
         SearchRequest searchRequest = new SearchRequest("films");
         SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
         sourceBuilder.query(QueryBuilders.multiMatchQuery(searchString,"filmTitle","description").fuzziness("AUTO"));
 
         searchRequest.source(sourceBuilder);
         SearchResponse searchResponse = esClient.search(searchRequest, RequestOptions.DEFAULT);
-        List<FilmDto> filmDtoList = new ArrayList<>();
+        List<FilmPageDto> filmDtoList = new ArrayList<>();
         for(SearchHit searchHit : searchResponse.getHits().getHits()){
             Map<String,Object> sourse = searchHit.getSourceAsMap();
 
-            FilmDto filmDto = new FilmDto();
-            filmDto.setIdFilm(Long.valueOf((int) sourse.get("idFilm")));
-            filmDto.setFilmTitle((String) sourse.get("filmTitle"));
-            filmDto.setDescription((String) sourse.get("description"));
+            FilmPageDto filmDto = new FilmPageDto();
+            filmDto.setId(Long.valueOf((int) sourse.get("idFilm")));
+            filmDto.setName((String) sourse.get("filmTitle"));
+            filmDto.setLogo((String) sourse.get("filmPoster"));
+            filmDto.setRating(filmService.getRatingFilmById(filmDto.getId()));
+            AgeLimitDto age = filmService.getAgeLimitByFilmId(filmDto.getId());
+            if(age != null){
+                filmDto.setAgeRestrictions(age.getTitle());
+            }
             filmDtoList.add(filmDto);
         }
         return filmDtoList;
