@@ -28,7 +28,13 @@ public class ReviewServiceImp implements ReviewService {
     @Override
     public List<ReviewDto> getAllReview() {
         List<Review> reviews = reviewRepository.findAll();
-        return reviewMapper.listReviewToListDto(reviews);
+        List<ReviewDto> list = new ArrayList<>();
+        for(Review review : reviews){
+            ReviewDto reviewDto = reviewMapper.reviewToDto(review);
+            reviewDto.setIdFilm(review.getFilm().getIdFilm());
+            list.add(reviewDto);
+        }
+        return list;
     }
 
     @Override

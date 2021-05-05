@@ -23,4 +23,6 @@ public class ReviewDto {
     private LocalDate reviewDate;
 
     private Long idUser;
+
+    private Long idFilm;
 }
