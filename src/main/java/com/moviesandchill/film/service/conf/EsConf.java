@@ -39,8 +39,7 @@ public class EsConf {
 
     @Autowired
     FilmRepository filmRepository;
-    @Autowired
-    @Lazy
+
     private EsService esService;
 
     String usernameElastic;
@@ -63,6 +62,12 @@ public class EsConf {
     @PostConstruct
     public void loadIndexFilm() throws Exception {
         esService.loadIndexFilm();
+    }
+
+    @Autowired
+    @Lazy
+    public void setEsService(EsService esService) {
+        this.esService = esService;
     }
 
     @Autowired
