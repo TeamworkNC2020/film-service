@@ -31,7 +31,7 @@ import java.util.*;
 @Service
 public class EsService {
 
-    private final RestHighLevelClient esClient;
+    private RestHighLevelClient esClient;
     private FilmService filmService;
     @Autowired
     FilmRepository filmRepository;
@@ -39,8 +39,7 @@ public class EsService {
     private SessionFactory sessionFactory;
 
     @Autowired
-    public EsService(RestHighLevelClient esClient, FilmService filmService) {
-        this.esClient = esClient;
+    public EsService( FilmService filmService) {
         this.filmService = filmService;
     }
 
@@ -142,5 +141,10 @@ public class EsService {
             filmDtoList.add(filmDto);
         }
         return filmDtoList;
+    }
+
+    @Autowired
+    public void setEsClient(RestHighLevelClient esClient) {
+        this.esClient = esClient;
     }
 }
