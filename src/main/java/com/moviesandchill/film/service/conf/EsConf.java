@@ -1,10 +1,5 @@
 package com.moviesandchill.film.service.conf;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.moviesandchill.film.service.domain.Film;
-import com.moviesandchill.film.service.domain.Genre;
-import com.moviesandchill.film.service.domain.Staff;
-import com.moviesandchill.film.service.dto.SearchFilm;
 import com.moviesandchill.film.service.repositories.FilmRepository;
 import com.moviesandchill.film.service.service.imp.EsService;
 import org.apache.http.HttpHost;
@@ -13,16 +8,8 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.DefaultConnectionKeepAliveStrategy;
-import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
-import org.elasticsearch.action.index.IndexRequest;
-import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.client.indices.CreateIndexRequest;
-import org.elasticsearch.client.indices.GetIndexRequest;
-import org.elasticsearch.common.xcontent.XContentType;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -30,9 +17,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 
 import javax.annotation.PostConstruct;
-import java.io.IOException;
-import java.util.List;
-import java.util.UUID;
 
 @Configuration
 public class EsConf {
@@ -40,6 +24,8 @@ public class EsConf {
     @Autowired
     FilmRepository filmRepository;
 
+    @Autowired
+    @Lazy
     private EsService esService;
 
     String usernameElastic;
@@ -64,11 +50,6 @@ public class EsConf {
         esService.loadIndexFilm();
     }
 
-    @Autowired
-    @Lazy
-    public void setEsService(EsService esService) {
-        this.esService = esService;
-    }
 
     @Autowired
     public void setElasticSettings(@Value("${endpoint.elastic-username}") String usernameElastic,
