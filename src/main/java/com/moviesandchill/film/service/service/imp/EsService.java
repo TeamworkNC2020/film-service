@@ -23,6 +23,7 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -39,6 +40,7 @@ public class EsService {
     private SessionFactory sessionFactory;
 
     @Autowired
+    @Lazy
     public EsService(RestHighLevelClient esClient, FilmService filmService) {
         this.esClient = esClient;
         this.filmService = filmService;
