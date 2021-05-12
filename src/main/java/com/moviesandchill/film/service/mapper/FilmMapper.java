@@ -1,9 +1,7 @@
 package com.moviesandchill.film.service.mapper;
 
 import com.moviesandchill.film.service.domain.Film;
-import com.moviesandchill.film.service.dto.FilmPageDto;
-import com.moviesandchill.film.service.dto.AgeLimitDto;
-import com.moviesandchill.film.service.dto.FilmDto;
+import com.moviesandchill.film.service.dto.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValuePropertyMappingStrategy;
@@ -29,7 +27,7 @@ public interface FilmMapper {
 
     Set<FilmDto> setFilmToSetDto(Set<Film> setFilm);
 
-    public static FilmPageDto filmToPage(Film film,Float rating,AgeLimitDto age){
+    static FilmPageDto filmToPage(Film film,Float rating,AgeLimitDto age){
         if(film == null){
             return null;
         }

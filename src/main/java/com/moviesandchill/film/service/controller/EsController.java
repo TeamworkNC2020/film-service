@@ -1,11 +1,12 @@
 package com.moviesandchill.film.service.controller;
 
-import com.moviesandchill.film.service.dto.FilmDto;
 import com.moviesandchill.film.service.dto.FilmPageDto;
+import com.moviesandchill.film.service.dto.Filter;
 import com.moviesandchill.film.service.service.imp.EsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -22,12 +23,12 @@ public class EsController {
     }
 
     @PutMapping("/reload")
-    public void loadFilmToSearch() throws IOException {
-        esService.updateIndexFilm();
+    public void loadFilmToSearch() throws Exception {
+       esService.loadIndexFilm();
     }
 
-    @GetMapping("/search")
-    public List<FilmPageDto> search(@RequestParam("search") String searchString) throws IOException {
-        return esService.search(searchString);
+    @PostMapping("/search")
+    public List<FilmPageDto> search(@RequestParam("search") String search,@RequestBody Filter filter) throws IOException {
+        return esService.search(search,filter);
     }
 }

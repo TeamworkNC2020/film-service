@@ -44,7 +44,7 @@ public class Film {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_age_limit")
     private AgeLimit age_limit;
 

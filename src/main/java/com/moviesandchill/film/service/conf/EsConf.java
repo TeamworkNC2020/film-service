@@ -1,8 +1,12 @@
 package com.moviesandchill.film.service.conf;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.moviesandchill.film.service.dto.FilmDto;
-import com.moviesandchill.film.service.service.FilmService;
+import com.moviesandchill.film.service.domain.Film;
+import com.moviesandchill.film.service.domain.Genre;
+import com.moviesandchill.film.service.domain.Staff;
+import com.moviesandchill.film.service.dto.SearchFilm;
+import com.moviesandchill.film.service.repositories.FilmRepository;
+import com.moviesandchill.film.service.service.imp.EsService;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -17,10 +21,13 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -31,7 +38,11 @@ import java.util.UUID;
 public class EsConf {
 
     @Autowired
-    FilmService filmService ;
+    FilmRepository filmRepository;
+    @Autowired
+    @Lazy
+    private EsService esService;
+
     String usernameElastic;
     String passwordElastic;
     String hostElastic;
@@ -50,21 +61,8 @@ public class EsConf {
     }
 
     @PostConstruct
-    public void loadIndexFilm() throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        RestHighLevelClient esClient = esClient();
-        List<FilmDto> filmDtoList = filmService.getAllFilm();
-        if(esClient.indices().exists(new GetIndexRequest("films"),RequestOptions.DEFAULT)){
-            DeleteIndexRequest deleteIndexRequest = new DeleteIndexRequest("films");
-            esClient.indices().delete(deleteIndexRequest, RequestOptions.DEFAULT);
-        }
-        esClient.indices().create(new CreateIndexRequest("films"),RequestOptions.DEFAULT);
-        for(FilmDto filmDto : filmDtoList){
-            IndexRequest indexRequest = new IndexRequest("films");
-            indexRequest.id(UUID.randomUUID().toString());
-            indexRequest.source(objectMapper.writeValueAsString(filmDto), XContentType.JSON);
-            esClient.index(indexRequest, RequestOptions.DEFAULT);
-        }
+    public void loadIndexFilm() throws Exception {
+        esService.loadIndexFilm();
     }
 
     @Autowired
