@@ -65,7 +65,6 @@ public class EsConf {
     }
 
     @Autowired
-    @Lazy
     public void setEsService(EsService esService) {
         this.esService = esService;
     }
