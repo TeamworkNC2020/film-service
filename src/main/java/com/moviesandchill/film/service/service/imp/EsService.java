@@ -41,6 +41,7 @@ public class EsService {
     private SessionFactory sessionFactory;
 
     @Autowired
+    @Lazy
     public EsService(RestHighLevelClient esClient, FilmService filmService) {
         this.esClient = esClient;
         this.filmService = filmService;
