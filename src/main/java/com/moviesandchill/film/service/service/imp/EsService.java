@@ -146,7 +146,6 @@ public class EsService {
     }
 
     @Autowired
-    @Lazy
     public void setEsClient(RestHighLevelClient esClient) {
         this.esClient = esClient;
     }
