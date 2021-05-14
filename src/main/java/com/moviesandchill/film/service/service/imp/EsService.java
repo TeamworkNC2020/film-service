@@ -41,7 +41,8 @@ public class EsService {
     private SessionFactory sessionFactory;
 
     @Autowired
-    public EsService(FilmService filmService) {
+    public EsService(RestHighLevelClient esClient, FilmService filmService) {
+        this.esClient = esClient;
         this.filmService = filmService;
     }
 
@@ -143,10 +144,5 @@ public class EsService {
             filmDtoList.add(filmDto);
         }
         return filmDtoList;
-    }
-
-    @Autowired
-    public void setEsClient(RestHighLevelClient esClient) {
-        this.esClient = esClient;
     }
 }

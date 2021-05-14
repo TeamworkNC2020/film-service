@@ -41,6 +41,7 @@ public class EsConf {
     }
 
     @PostConstruct
+    @Lazy
     public void loadIndexFilm() throws Exception {
         esService.loadIndexFilm();
     }
