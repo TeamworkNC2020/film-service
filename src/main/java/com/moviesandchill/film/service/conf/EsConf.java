@@ -21,11 +21,6 @@ import javax.annotation.PostConstruct;
 @Configuration
 public class EsConf {
 
-    @Autowired
-    FilmRepository filmRepository;
-
-    @Autowired
-    @Lazy
     private EsService esService;
 
     String usernameElastic;
@@ -62,4 +57,9 @@ public class EsConf {
         this.portElastic = portElastic;
     }
 
+    @Autowired
+    @Lazy
+    public void setEsService(EsService esService) {
+        this.esService = esService;
+    }
 }
