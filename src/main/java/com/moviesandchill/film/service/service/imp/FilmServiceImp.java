@@ -104,15 +104,31 @@ public class FilmServiceImp implements FilmService {
     }
 
     @Override
-    public List<FilmPageDto> getRandomThreeFilms() {
+    public List<RandFilmDto> getRandomThreeFilms() {
         int len = (int) filmRepository.count()/ 3;
         int idx =(int) new Random().nextInt(len);
         List<Film> films = filmRepository.findAll(PageRequest.of(idx, 3)).getContent();
-        List<FilmPageDto> filmPageDtos = new ArrayList<>();
+        List<RandFilmDto> filmPageDtos = new ArrayList<>();
         for(Film film : films){
-            filmPageDtos.add(FilmMapper.filmToPage(film,
-                    getRatingFilmById(film.getIdFilm()),
-                    getAgeLimitByFilmId(film.getIdFilm())));
+            RandFilmDto randFilmDto = new RandFilmDto();
+            randFilmDto.setId(film.getIdFilm());
+            randFilmDto.setName(film.getFilmTitle());
+            randFilmDto.setRating(getRatingFilmById(film.getIdFilm()));
+            randFilmDto.setDescription(film.getDescription());
+            AgeLimitDto age = getAgeLimitByFilmId(film.getIdFilm());
+            if(age != null){
+                randFilmDto.setAgeRestrictions(age.getTitle());
+            }
+            List<ScreenshotDto> screenshots = getAllScreenshotWithFilm(film.getIdFilm());
+            if(screenshots != null && !screenshots.isEmpty()){
+                for(ScreenshotDto screen :  screenshots){
+                    if(screen.getScreenshot() != null){
+                        randFilmDto.setScreen(screen.getScreenshot());
+                        break;
+                    }
+                }
+            }
+            filmPageDtos.add(randFilmDto);
         }
         return filmPageDtos;
     }

@@ -36,7 +36,7 @@ public class FilmController {
     }
 
     @GetMapping("/randomthreefilms")
-    public List<FilmPageDto> getRandomThreeFilms() {
+    public List<RandFilmDto> getRandomThreeFilms() {
         return filmService.getRandomThreeFilms();
     }
 

@@ -15,7 +15,7 @@ public interface FilmService {
 
     List<FilmPageDto> getFirstNewFilms();
 
-    List<FilmPageDto> getRandomThreeFilms();
+    List<RandFilmDto> getRandomThreeFilms();
 
     void deleteAllFilm();
 
