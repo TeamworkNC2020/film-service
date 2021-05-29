@@ -21,6 +21,7 @@ import javax.annotation.PostConstruct;
 @Configuration
 public class EsConf {
 
+    @Lazy
     private EsService esService;
 
     String usernameElastic;
