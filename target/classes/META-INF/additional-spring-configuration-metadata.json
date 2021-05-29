@@ -26,5 +26,12 @@
       "type": "java.lang.Integer",
       "description": "port from elastic"
     }
+  ],
+  "properties": [
+    {
+      "name": "endpoint.streaming-service.url",
+      "type": "java.lang.String",
+      "description": "port from video-streaming-service"
+    }
   ]
 }

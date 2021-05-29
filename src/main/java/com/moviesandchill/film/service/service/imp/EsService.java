@@ -8,6 +8,7 @@ import com.moviesandchill.film.service.dto.*;
 import com.moviesandchill.film.service.repositories.FilmRepository;
 import com.moviesandchill.film.service.service.FilmService;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -106,6 +107,18 @@ public class EsService {
         indexRequest.id(UUID.randomUUID().toString());
         indexRequest.source(objectMapper.writeValueAsString(searchFilm), XContentType.JSON);
         esClient.index(indexRequest, RequestOptions.DEFAULT);
+    }
+
+    public void deleteFilm(Long filmId) throws Exception {
+        SearchRequest searchRequest = new SearchRequest("films");;
+        BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
+        queryBuilder.must(QueryBuilders.multiMatchQuery(filmId,"idFilm"));
+        searchRequest.source(new SearchSourceBuilder().query(queryBuilder));
+        SearchResponse response = esClient.search(searchRequest, RequestOptions.DEFAULT);
+        for(SearchHit hit : response.getHits()){
+            String id = hit.getId();
+            esClient.deleteAsync(new DeleteRequest("films",id),RequestOptions.DEFAULT,null);
+        }
     }
 
     public List<FilmPageDto> search(String searchString, Filter filter) throws IOException {

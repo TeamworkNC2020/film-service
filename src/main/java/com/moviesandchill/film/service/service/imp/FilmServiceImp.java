@@ -6,6 +6,7 @@ import com.moviesandchill.film.service.mapper.*;
 import com.moviesandchill.film.service.repositories.*;
 import com.moviesandchill.film.service.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -50,6 +51,7 @@ public class FilmServiceImp implements FilmService {
     ScreenshotMapper screenshotMapper;
     @Autowired
     CountryMapper countryMapper;
+    EsService esService;
 
     @Override
     public List<FilmDto> getAllFilm() {
@@ -136,6 +138,10 @@ public class FilmServiceImp implements FilmService {
     @Override
     public void deleteAllFilm() {
         filmRepository.deleteAll();
+        try {
+            esService.loadIndexFilm();
+        } catch (Exception ignored) {
+        }
     }
 
     @Override
@@ -148,12 +154,21 @@ public class FilmServiceImp implements FilmService {
     public FilmDto addFilm(FilmDto film_dto) {
         Film film = filmMapper.dtoToFilm(film_dto);
         film = filmRepository.save(film);
+        try {
+            esService.deleteFilm(film.getIdFilm());
+            esService.loadFilm(film.getIdFilm());
+        } catch (Exception ignored) {
+        }
         return filmMapper.filmToDto(film);
     }
 
     @Override
-    public void deleteFilmById(Long film_id) {
+    public void deleteFilmById(Long film_id){
         filmRepository.deleteById(film_id);
+        try {
+            esService.deleteFilm(film_id);
+        } catch (Exception ignored) {
+        }
     }
 
     @Override
@@ -314,5 +329,11 @@ public class FilmServiceImp implements FilmService {
         Screenshot screenshot = screenshotRepository.findById(screenshot_id).orElseThrow(() -> new Exception());
         screenshot.setFilm(film);
         screenshotRepository.save(screenshot);
+    }
+
+    @Autowired
+    @Lazy
+    public void setEsService(EsService esService) {
+        this.esService = esService;
     }
 }
