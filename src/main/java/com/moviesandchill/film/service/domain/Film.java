@@ -63,13 +63,13 @@ public class Film {
             inverseJoinColumns = @JoinColumn(name = "staff_id", referencedColumnName = "id_staff"))
     private List<Staff> staffs = new ArrayList<>();
 
-    @OneToMany(mappedBy = "film")
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL)
     private List<ViewHistory> view_histories = new ArrayList<ViewHistory>();
 
-    @OneToMany(mappedBy = "film")
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<Review>();
 
-    @OneToMany(mappedBy = "film")
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL)
     private List<Screenshot> screenshots = new ArrayList<Screenshot>();
 
 }
